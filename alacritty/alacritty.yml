@@ -20,6 +20,9 @@ window:
   #dimensions:
   #  columns: 0
   #  lines: 0
+  dimensions:
+    columns: 120
+    lines: 30
 
   # Window position (changes require restart)
   #
@@ -68,7 +71,7 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  #startup_mode: Windowed
+  startup_mode: Windowed
 
   # Window title
   title: Alacritty
@@ -126,11 +129,15 @@ font:
     # family: Monofur Nerd Font
     # family: TerminessTTF Nerd Font
     # family: Mononoki Nerd Font
-    family: CaskaydiaCove NF Mono
+    # family: CaskaydiaCove NF Mono
+    # family: Hack Nerd Font
+    # family: SauceCodePro Nerd Font
+    family: FiraCode Nerd Font
 
     # The `style` can be specified to pick a specific face.
-    style: Light
-    # style: normal
+    # style: Light
+    # style: Light
+    style: Regular
 
   # Bold font face
   bold:
@@ -139,7 +146,7 @@ font:
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
     # family: Source Code Pro
-    family: CaskaydiaCove NF Mono
+    family: FiraCode Nerd Font
     # family: CodeNewRoman Nerd Font
     # family: RobotoMono Nerd Font
     # family: Hack
@@ -151,7 +158,7 @@ font:
 
     # The `style` can be specified to pick a specific face.
     # style: Bold
-    style: normal
+    style: Regular
 
   # Italic font face
   italic:
@@ -198,7 +205,7 @@ font:
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   offset:
     x: 0
-    y: 1
+    y: 5
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
@@ -576,7 +583,8 @@ schemes:
 # *SolarizedDark
 # *TomorrowNight
 
-colors: *DoomOne
+# colors: *DoomOne
+colors: *GruvboxDark
 
 #######################################
 ##       END OF COLOR SCHEMES        ##
@@ -619,31 +627,33 @@ colors: *DoomOne
 
 cursor:
   # Cursor style
-  #
-  # Values for `style`:
-  #   - ▇ Block
-  #   - _ Underline
-  #   - | Beam
-  style: Beam
-  # Cursor blinking state
-  #
-  # Values for `blinking`:
-  #   - Never: Prevent the cursor from ever blinking
-  #   - Off: Disable blinking by default
-  #   - On: Enable blinking by default
-  #   - Always: Force the cursor to always blink
-  #blinking: Off
-  #blinking: On
-  #blink_interval: 75
-cursor.style.blinking: On
-cursor.blink_interval: 750
+  style:
+    # Cursor shape
+    #
+    # Values for `shape`:
+    #   - ▇ Block
+    #   - _ Underline
+    #   - | Beam
+    shape: Beam
+
+    # Cursor blinking state
+    #
+    # Values for `blinking`:
+    #   - Never: Prevent the cursor from ever blinking
+    #   - Off: Disable blinking by default
+    #   - On: Enable blinking by default
+    #   - Always: Force the cursor to always blink
+    blinking: Always
+  blink_interval: 700
+#cursor.style.blinking: On
+#cursor.blink_interval: 750
 
 # If this is `true`, the cursor will be rendered as a hollow box when the
 # window is not focused.
-#unfocused_hollow: true
+unfocused_hollow: true
 
 # Live config reload (changes require restart)
-#live_config_reload: true
+live_config_reload: true
 
 # Shell
 #
