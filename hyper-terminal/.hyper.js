@@ -8,16 +8,15 @@ module.exports = {
         // or `'canary'` for less polished but more frequent updates
         updateChannel: 'stable',
         // default font size in pixels for all tabs
-        fontSize: 20,
+        fontSize: 24,
         // font family with optional fallbacks
-        // fontFamily: 'Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
-        fontFamily: '"CaskaydiaCove NF Mono", monospace',
-        //fontFamily: "Fira Code",
+        fontFamily: '"SauceCodePro Nerd Font"',
         // default font weight: 'normal' or 'bold'
         //fontWeight: 'normal',
-        fontWeight: 350,
+        fontWeight: 'Medium',
         // font weight for bold characters: 'normal' or 'bold'
-        fontWeightBold: 'bold',
+        //fontWeightBold: 'bold',
+        fontWeightBold: 'normal',
         // line height as a relative unit
         lineHeight: 1,
         // letter spacing as a relative unit
@@ -41,44 +40,37 @@ module.exports = {
         borderColor: '#333',
         // custom CSS to embed in the main window
         //css: '',
+        // css: `
+        //     .term_fit > .terminal > .xterm-screen {
+        //         width: 100vw !important;
+        //     }
+        //     .term_fit > .terminal > .xterm-screen canvas {
+        //         width: 100vw !important;
+        //     }
+        //     `,
         css: `
+            .term_fit > .terminal > .xterm-screen {
+                width: 100vw !important;               
+            }
+            .term_fit > .terminal > .xterm-screen canvas {
+                width: 100vw !important;
+                height: 100% !important;
+                padding-bottom:0px !important;
+                margin-bottom:0px !important;
+                bottom:0px !important;
+            }
+            .terminal{
+                height: 100% !important;
+            }
             .term_fit > .terminal {
                 display: flex;
                 align-items: center;
-                line-height: 160%;
-                margin-bottom:0px;
-                padding-bottom:0px;
-                justify-content: center; 
-            }
-            .tabs_nav {
-                top: 0;
-            }
-            .terms_terms {
-                margin-top: 30px;
-            }
-            .terms_termsShifted {
-                margin-top: 32px;
-            }
-            `,
-        
-        // css: `
-        //     .terms_19b1ydh {
-        //         margin-top: 20px;
-        //     }
-        //     .header_windowHeader {
-        //         display: none;
-        //     }
-        //     .tabs_nav {
-        //         top: 0;
-        //     }
-        //     .terms_terms {
-        //         margin-top: 0;
-        //     }
-        //     .terms_termsShifted {
-        //         margin-top: 30px;
-        //     }
-        //     `,
-
+                justify-content: center;
+                height: 100% !important;
+                padding-bottom:0px !important;
+                margin-bottom:0px !important;
+                bottom:0px !important;
+            }`, 
         // custom CSS to embed in the terminal window
         termCSS: '',
         // set custom startup directory (must be an absolute path)
@@ -91,7 +83,8 @@ module.exports = {
         // default: `true` (without backticks and without quotes) on Windows and Linux, ignored on macOS
         showWindowControls: '',
         // custom padding (CSS format, i.e.: `top right bottom left`)
-        padding: '12px 0px',
+        //padding: '12px 14px',
+        padding: '1px 0px',
         // the full list. if you're going to provide the full color palette,
         // including the 6 x 6 color cubes and the grayscale map, just provide
         // an array here instead of a color map object
@@ -171,7 +164,7 @@ module.exports = {
         // set to true to preserve working directory when creating splits or tabs
         preserveCWD: true,
         // for advanced config flags please refer to https://hyper.is/#cfg
-        opacity: 0.96,
+        opacity: 0.95,
     },
     // a list of plugins to fetch and install from npm
     // format: [@org/]project[#version]
@@ -180,16 +173,12 @@ module.exports = {
     //   `@company/project`
     //   `project#1.0.1`
     plugins: [
-        //'hyper-one-dark',
-        //'hyper-statusline',
-        'hyperterm-chesterish',
-        'hypercwd',
-        "hyper-dark-scrollbar",
+        "hyperterm-chesterish",
+        "hypercwd",
         "hyper-snazzy",
-        "hyper-systray",
         "hyper-opacity",
         "hyper-tab-icons",
-        //"hyperborder"
+        "hyperterm-gruvbox-dark",
     ],
     // in development, you can create a directory under
     // `~/.hyper_plugins/local/` and include it here
