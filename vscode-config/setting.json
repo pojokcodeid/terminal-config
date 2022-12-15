@@ -1,0 +1,27 @@
+{
+    "workbench.colorTheme": "Eva Dark",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.productIconTheme": "fluent-icons",
+    "workbench.startupEditor": "none",
+    "editor.fontSize": 17,
+    "editor.fontFamily": "Source Code Pro",
+    "scm.inputFontSize": 17,
+    "debug.console.fontSize": 17,
+    "markdown.preview.fontSize": 17,
+    "terminal.integrated.fontSize": 15,
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "mdb.confirmRunAll": false,
+    "workbench.sideBar.location": "right",
+    "window.menuBarVisibility": "compact",
+    "window.commandCenter": true,
+    "window.zoomLevel": 1,
+    "editor.minimap.autohide": true,
+    "editor.minimap.renderCharacters": false,
+    "editor.minimap.scale": 2,
+    "timeline.pageOnScroll": true,
+    "editor.scrollbar.vertical": "hidden",
+    "editor.cursorBlinking": "expand",
+    "editor.stickyScroll.enabled": true
+}
