@@ -9,9 +9,9 @@
     "scm.inputFontSize": 17,
     "debug.console.fontSize": 17,
     "markdown.preview.fontSize": 17,
-    "terminal.integrated.fontSize": 15,
+    "terminal.integrated.fontSize": 16,
+    "terminal.integrated.fontFamily": "SauceCodePro Nerd Font",
     "mdb.confirmRunAll": false,
-    "workbench.sideBar.location": "right",
     "window.menuBarVisibility": "compact",
     "window.commandCenter": true,
     "window.zoomLevel": 1,
@@ -101,5 +101,9 @@
     "editor.linkedEditing": true,
     "[html]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+    },
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.cursorStyle": "line"
 }
+
+
