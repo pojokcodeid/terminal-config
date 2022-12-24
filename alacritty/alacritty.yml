@@ -21,8 +21,8 @@ window:
   #  columns: 0
   #  lines: 0
   dimensions:
-    columns: 120
-    lines: 30
+    columns: 110
+    lines: 28
 
   # Window position (changes require restart)
   #
@@ -48,8 +48,8 @@ window:
   #
   # Window opacity as a floating point number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
-  #opacity: 1.0
-  opacity: 0.95
+  opacity: 1.0
+  #opacity: 0.95
 
   # Window decorations
   #
@@ -200,7 +200,7 @@ font:
     style: Bold Italic
 
   # Point size
-  size: 19.0
+  size: 17.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -569,6 +569,7 @@ schemes:
       cyan: "#54ced6"
       white: "#282a2e"
 
+
 ######################################################################
 ## SET THEME: Choose ONE color scheme from those in the above list. ##
 ## ###################################################################
@@ -584,8 +585,9 @@ schemes:
 # *SolarizedDark
 # *TomorrowNight
 
+
 # colors: *DoomOne
-colors: *GruvboxDark
+colors: *DoomOne
 
 #######################################
 ##       END OF COLOR SCHEMES        ##
@@ -666,7 +668,7 @@ live_config_reload: true
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
 shell:
-  program: pwsh.exe
+  program: pwsh.exe -nologo
   args:
     - --login
 
@@ -872,7 +874,9 @@ working_directory: c:/Users/Asep
 key_bindings:
   # (Windows, Linux, and BSD only)
   - { key: V, mods: Control|Shift, action: Paste }
+  - { key: V, mods: Control, action: Paste }
   - { key: C, mods: Control|Shift, action: Copy }
+  - { key: C, mods: Control, action: Copy }
   - { key: Insert, mods: Shift, action: PasteSelection }
   - { key: Key0, mods: Control, action: ResetFontSize }
   - { key: Equals, mods: Control, action: IncreaseFontSize }
@@ -887,3 +891,6 @@ key_bindings:
   - { key: PageDown, mods: None, action: ScrollPageDown, mode: ~Alt }
   - { key: Home, mods: Shift, action: ScrollToTop, mode: ~Alt }
   - { key: End, mods: Shift, action: ScrollToBottom, mode: ~Alt }
+  - { key: T, mods: Control|Shift, action: CreateNewWindow }
+  - { key: T, mods: Control, action: CreateNewWindow }
+
