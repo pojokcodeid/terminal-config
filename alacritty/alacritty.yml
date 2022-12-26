@@ -133,10 +133,13 @@ font:
     # family: Hack Nerd Font
     family: SauceCodePro Nerd Font
     # family: FiraCode Nerd Font
+    # family: Iosevka Term
+    # family: Fira Code
 
     # The `style` can be specified to pick a specific face.
     # style: Light
     # style: Light
+    # style: Regular
     style: Regular
 
   # Bold font face
@@ -167,7 +170,8 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Source Code Pro
+    # family: Source Code Pro
+    family: FiraCode Nerd Font
     # family: CodeNewRoman Nerd Font
     # family: RobotoMono Nerd Font
     # family: Hack
@@ -186,7 +190,8 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Source Code Pro
+    # family: Source Code Pro
+    family: FiraCode Nerd Font
     # family: CodeNewRoman Nerd Font
     # family: RobotoMono Nerd Font
     # family: Hack
@@ -570,6 +575,7 @@ schemes:
       white: "#282a2e"
 
 
+
 ######################################################################
 ## SET THEME: Choose ONE color scheme from those in the above list. ##
 ## ###################################################################
@@ -587,7 +593,7 @@ schemes:
 
 
 # colors: *DoomOne
-colors: *DoomOne
+colors: *Nord
 
 #######################################
 ##       END OF COLOR SCHEMES        ##
@@ -893,4 +899,3 @@ key_bindings:
   - { key: End, mods: Shift, action: ScrollToBottom, mode: ~Alt }
   - { key: T, mods: Control|Shift, action: CreateNewWindow }
   - { key: T, mods: Control, action: CreateNewWindow }
-
