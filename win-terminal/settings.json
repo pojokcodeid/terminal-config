@@ -108,14 +108,13 @@
             },
             {
                 "backgroundImage": null,
-                "colorScheme": "Tokyo Night Storm",
-                //"commandline": "\"C:\\Users\\Asep\\AppData\\Local\\Microsoft\\WindowsApps\\Microsoft.PowerShell_8wekyb3d8bbwe\\pwsh.exe\"",
+                "colorScheme": "Nord",
                 "commandline": "pwsh.exe -nologo",
                 "experimental.retroTerminalEffect": false,
                 "font": 
                 {
-                    "face": "SauceCodePro Nerd Font",
-                    "size": 17,
+                    "face": "FiraCode Nerd Font",
+                    "size": 16,
                     "weight": "normal"
                 },
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
@@ -138,7 +137,7 @@
                 "cursorShape": "bar",
                 "font": 
                 {
-                    "face": "SauceCodePro Nerd Font",
+                    "face": "FiraCode Nerd Font",
                     "size": 16,
                     "weight": "normal"
                 },
@@ -262,6 +261,29 @@
             "selectionBackground": "#FFFFFF",
             "white": "#A89984",
             "yellow": "#D79921"
+        },
+        {
+            "background": "#2E3440",
+            "black": "#3B4252",
+            "blue": "#81A1C1",
+            "brightBlack": "#4C566A",
+            "brightBlue": "#81A1C1",
+            "brightCyan": "#8FBCBB",
+            "brightGreen": "#A3BE8C",
+            "brightPurple": "#B48EAD",
+            "brightRed": "#BF616A",
+            "brightWhite": "#ECEFF4",
+            "brightYellow": "#EBCB8B",
+            "cursorColor": "#81A1C1",
+            "cyan": "#88C0D0",
+            "foreground": "#D8DEE9",
+            "green": "#A3BE8C",
+            "name": "Nord",
+            "purple": "#B48EAD",
+            "red": "#BF616A",
+            "selectionBackground": "#434C5E",
+            "white": "#E5E9F0",
+            "yellow": "#EBCB8B"
         },
         {
             "background": "#1E2127",
