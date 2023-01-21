@@ -1,3 +1,4 @@
+## Basic Plugin
 1. Backet Pair Color 
 2. Dracula Oficial 
 3. Fluent Icon
