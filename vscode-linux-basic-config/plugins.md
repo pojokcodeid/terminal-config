@@ -6,3 +6,12 @@
 6. Path Intelisense
 7. Prettier
 8. Live Server
+
+
+## Install Font 
+``` bash
+cd Download
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.0/FiraCode.zip
+unzip FiraCode.zip -d ~/.fonts
+fc-cache -fv
+```
