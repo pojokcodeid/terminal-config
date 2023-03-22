@@ -1,0 +1,39 @@
+{
+    "workbench.colorTheme": "Eva Dark",
+    "workbench.productIconTheme": "fluent-icons",
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.fontSize": 17,
+    "editor.fontFamily": "'Fira Code',Consolas, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "workbench.startupEditor": "none",
+    "scm.inputFontSize": 17,
+    "debug.console.fontSize": 17,
+    "markdown.preview.fontSize": 17,
+    "terminal.integrated.fontSize": 16,
+    "window.menuBarVisibility": "compact",
+    "window.commandCenter": true,
+    "window.zoomLevel": 1,
+    "editor.minimap.autohide": true,
+    "editor.minimap.renderCharacters": false,
+    "editor.minimap.scale": 2,
+    "timeline.pageOnScroll": true,
+    "editor.scrollbar.vertical": "hidden",
+    "editor.cursorBlinking": "expand",
+    "editor.stickyScroll.enabled": true,
+    "editor.fontVariations": false,
+    "editor.accessibilitySupport": "off",
+    "terminal.integrated.fontWeight": "normal",
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    "editor.linkedEditing": true,
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.cursorStyle": "line",
+    "[php]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "DEVSENSE.phptools-vscode"
+    }
+}
