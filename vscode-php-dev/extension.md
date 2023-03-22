@@ -11,8 +11,14 @@
 - Rainbow Bracket 2
 - php devsense
 - Xdebug
+- PHP TDD
+- PHP Form Builder
+- Format HTML in PHP
+- PHP Namespace Resolver
+- Path Intellisense
 
 - Download Font Fira Code
 - Setting Font 
 - Set Ligature
+
 ```
