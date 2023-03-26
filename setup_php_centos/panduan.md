@@ -64,11 +64,11 @@
 	
 	sudo vi /etc/httpd/sites-available/example.com.conf
 	<VirtualHost *:80>
-    ServerName www.example.com
-    ServerAlias example.com
-    DocumentRoot /var/www/example.com/html
-    ErrorLog /var/www/example.com/log/error.log
-    CustomLog /var/www/example.com/log/requests.log combined
+           ServerName www.example.com
+           ServerAlias example.com
+           DocumentRoot /var/www/example.com/html
+           ErrorLog /var/www/example.com/log/error.log
+           CustomLog /var/www/example.com/log/requests.log combined
 	</VirtualHost>
 	
 	sudo ln -s /etc/httpd/sites-available/example.com.conf /etc/httpd/sites-enabled/example.com.conf
