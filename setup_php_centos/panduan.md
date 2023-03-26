@@ -1,3 +1,18 @@
+## Config Supaya Centos Bisa Copy Paste
+```
+sudo su 
+yum -y install epel-release
+yum -y update
+yum install make gcc kernel-headers kernel-devel perl dkms bzip2
+export KERN_DIR=/usr/src/kernels/$(uname -r)
+mount -r /dev/cdrom /media
+cd /media/
+./VBoxLinuxAdditions.run
+power off and enable share clipboard
+power off and enable share clipboard
+```
+
+## Config PHP, Apache dan MariaDB
 ```
 -- install apache
 	sudo su
