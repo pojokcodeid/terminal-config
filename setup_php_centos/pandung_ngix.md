@@ -10,6 +10,10 @@ systemctl enable php-fpm
 systemctl start php-fpm
 systemctl status php-fpm
 
+firewall-cmd --permanent --zone=public --add-service=http
+firewall-cmd --permanent --zone=public --add-service=https
+firewall-cmd --reload
+
 sudo mkdir -p /var/www/example.com/html
 sudo chown -R $USER:$USER /var/www/example.com/html
 
