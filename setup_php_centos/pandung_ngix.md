@@ -1,6 +1,7 @@
 ```
 sudo dnf install nginx
 sudo dnf install php php-fpm
+yum install php php-mysqlnd php-pdo php-gd php-mbstring
 
 systemctl enable nginx
 systemctl start nginx
@@ -16,6 +17,7 @@ firewall-cmd --reload
 
 sudo mkdir -p /var/www/example.com/html
 sudo chown -R $USER:$USER /var/www/example.com/html
+sudo chmod -R 755 /var/www
 
 cd /etc/nginx/conf.d/
 sudo nano example.com.conf
