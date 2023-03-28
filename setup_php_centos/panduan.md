@@ -120,4 +120,14 @@ power off and enable share clipboard
 	sudo mv phpmyadmin* phpmyadmin 
 	
 	coba bula dari browser
+	
+-- Update PHP
+	sudo dnf upgrade --refresh
+	sudo dnf install http://rpms.remirepo.net/fedora/remi-release-37.rpm -y
+	dnf repolist | grep remi
+	dnf module list php
+	sudo dnf remove php php-cli -y
+	sudo dnf module enable php:remi-8.2 -y
+	sudo dnf install php php-cli php-common php-mysqlnd php-xml php-json php-gd php-mbstring -y
+	sudo systemctl start httpd 
 ```
