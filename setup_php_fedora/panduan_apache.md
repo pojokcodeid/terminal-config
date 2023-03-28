@@ -31,9 +31,9 @@ sudo dnf install php php-common php-mysqlnd
 sudo dnf install php-xml php-json php-gd php-mbstring 
 php -v 
 
-sudo firewall-cmd -–permanent -–add-service=http 
-sudo firewall-cmd –-permanent –-add-service=https
-sudo systemctl reload firewalld 
+sudo firewall-cmd --permanent --add-service=http
+sudo firewall-cmd --permanent --add-service=https
+sudo firewall-cmd --reload
 
 sudo systemctl restart httpd 
 sudo dnf install nano
