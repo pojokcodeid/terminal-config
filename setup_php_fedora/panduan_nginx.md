@@ -27,9 +27,6 @@ sudo dnf install nano
 cd /etc/nginx/conf.d/
 sudo nano example.com.conf
 
---- supaua bisa acess index install ini
-sudo dnf install php php-mysqlnd php-pdo php-gd php-mbstring
-
 server {
     listen 80;
     listen [::]:80;
