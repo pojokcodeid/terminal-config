@@ -1,8 +1,11 @@
+## Install Font
+```
 cd Download
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.0/FiraCode.zip
 unzip FiraCode.zip -d ~/.fonts
 fc-cache -fv
-
+```
+## install kitty dan pendukung
 ```
 sudo apt update && sudo apt upgrade
 sudo apt-get install fish
