@@ -68,8 +68,8 @@ colors:
 
 # font
 font:
-  size: 10.0
-  family: Consolas
+  size: 16.0
+  family: FiraCode Nerd Font
 
 
 # key mappings
