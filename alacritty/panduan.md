@@ -29,7 +29,16 @@ cargo build --release && sudo cp target/release/alacritty /usr/local/bin && sudo
 
 7. Setelah itu, Alacritty sudah terinstall pada sistem Anda. Gunakan perintah `alacritty` untuk menjalankannya.
 
-8. Bila Anda ingin melakukan konfigurasi pada Alacritty, buat file konfigurasi dengan membuat file `alacritty.yml` pada direktori `$HOME/.config/alacritty/` dan lalu atur sesuai dengan preferensi Anda. Berikut adalah contoh konfigurasi:
+8. Install Font Fira COde
+
+```
+cd Download
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.0/FiraCode.zip
+unzip FiraCode.zip -d ~/.fonts
+fc-cache -fv
+```
+
+9. Bila Anda ingin melakukan konfigurasi pada Alacritty, buat file konfigurasi dengan membuat file `alacritty.yml` pada direktori `$HOME/.config/alacritty/` dan lalu atur sesuai dengan preferensi Anda. Berikut adalah contoh konfigurasi:
 
 ```
 # colors
