@@ -8,7 +8,10 @@ This command will install the latest version of the `PSReadLine` module for the 
 
 Note: Before running this command, make sure you have an internet connection and the execution policy set to allow script execution.
 
-## INstall Icon
+## Install Oh My Posh
+https://ohmyposh.dev/
+
+## Install Icon
 
 Untuk menginstall terminal-icons pada PowerShell, ikuti langkah-langkah berikut:
 
