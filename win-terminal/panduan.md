@@ -1,4 +1,6 @@
-To install `PSReadLine` module in PowerShell, you can use the following command:
+## Install Powershell dari windows terminal
+
+## To install `PSReadLine` module in PowerShell, you can use the following command:
 
 ```powershell
 Install-Module -Name PSReadLine -Scope CurrentUser
