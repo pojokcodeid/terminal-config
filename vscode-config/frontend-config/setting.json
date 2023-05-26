@@ -1,0 +1,27 @@
+{
+  "workbench.productIconTheme": "fluent-icons",
+  "workbench.colorTheme": "Eva Dark",
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.fontSize": 16,
+  "workbench.startupEditor": "none",
+  "window.menuBarVisibility": "compact",
+  "workbench.sideBar.location": "right",
+  "editor.minimap.renderCharacters": false,
+  "editor.fontWeight": "normal",
+  "editor.minimap.autohide": true,
+  "editor.minimap.scale": 1,
+  "timeline.pageOnScroll": true,
+  "editor.scrollbar.vertical": "hidden",
+  "editor.cursorBlinking": "expand",
+  "editor.stickyScroll.enabled": true,
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnSave": true,
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
