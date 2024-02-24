@@ -2,7 +2,10 @@ working_directory = "c:\\Users\\Asep"
 
 [shell]
 args = ['--login']
-program = "C:\\Users\\Asep\\AppData\\Local\\Microsoft\\WindowsApps\\pwsh.exe"
+program = "pwsh.exe -nologo"
+
+[cursor]
+blink_interval = 700
 
 [cursor.style]
 shape = "Beam"
@@ -36,6 +39,9 @@ style = "Italic"
 x = 0
 y = 2
 
+[scrolling]
+history = 5000
+
 [window]
 startup_mode = "Windowed"
 dynamic_padding = true
@@ -46,37 +52,48 @@ title = "Pojok Code"
 x = 0
 y = 0
 
-#[window.dimensions]
-#columns = 90
-#lines = 25
+[window.dimensions]
+columns = 100
+lines = 30
 
+# Normal colors
 [colors.normal]
-black = "#1c1f24"
-red = "#ff6c6b"
-green = "#98be65"
-yellow = "#da8548"
-blue = "#51afef"
-magenta = "#c678dd"
-cyan = "#5699af"
-white = "#202328"
+black = '#15161e'
+red = '#f7768e'
+green = '#9ece6a'
+yellow = '#e0af68'
+blue = '#7aa2f7'
+magenta = '#bb9af7'
+cyan = '#7dcfff'
+white = '#a9b1d6'
 
+# Bright colors
 [colors.bright]
-black = "#5b6268"
-red = "#da8548"
-green = "#4db5bd"
-yellow = "#ecbe7b"
-blue = "#3071db" # This is 2257a0 in Doom Emacs but I lightened it.
-magenta = "#a9a1e1"
-cyan = "#46d9ff"
-white = "#dfdfdf"
+black = '#414868'
+red = '#f7768e'
+green = '#9ece6a'
+yellow = '#e0af68'
+blue = '#7aa2f7'
+magenta = '#bb9af7'
+cyan = '#7dcfff'
+white = '#c0caf5'
 
 [colors.primary]
-background = "#282c34"
-foreground = "#bbc2cf"
+background = '#1a1b26'
+foreground = '#c0caf5'
 
-[colors.cursor]
-text = "CellBackground"
-cursor = "#528bff"
+#[colors.cursor]
+#cursor = '#c0caf5'
+#text = '#1a1b26'
+
+# Indexed Colors
+[[colors.indexed_colors]]
+index = 16
+color = '#ff9e64'
+
+[[colors.indexed_colors]]
+index = 17
+color = '#db4b4b'
 
 [colors.selection]
 text = "CellForeground" 
@@ -185,11 +202,4 @@ mods = "Control|Shift"
 action = "CreateNewWindow"
 key = "T"
 mods = "Control"
-
-[[keyboard.bindings]]
-action = "CreateNewWindow"
-key = "T"
-mods = "Control"
-
-
 
