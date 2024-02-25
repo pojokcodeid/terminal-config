@@ -27,13 +27,6 @@ config.background = {
 	},
 }
 config.exit_behavior = "Close"
--- config.font = wezterm.font({
--- 	family = "Hasklug Nerd Font",
--- 	weight = "Regular",
--- 	stretch = "Normal",
--- 	style = "Normal",
--- 	harfbuzz_features = { "cv29", "cv30", "ss01", "ss03", "ss06", "ss07", "ss09" },
--- })
 
 -- and window padding:
 config.window_padding = {
@@ -54,13 +47,23 @@ config.default_cwd = wezterm.home_dir
 -- activate font ligature
 config.harfbuzz_features = { "liga=1" }
 --[[ set font Hasklug Nerd font ]]
-config.font = wezterm.font_with_fallback({
-	{ family = "Hasklug Nerd Font", weight = "Regular" },
+-- config.font = wezterm.font_with_fallback({
+-- 	{ family = "Hasklug Nerd Font", weight = "Medium" },
+-- })
+config.font = wezterm.font({
+	family = "Hasklug Nerd Font",
+	weight = "Medium",
+	stretch = "Normal",
+	style = "Normal",
+	harfbuzz_features = { "cv29", "cv30", "ss01", "ss03", "ss06", "ss07", "ss09" },
 })
+
 config.disable_default_key_bindings = true
 config.force_reverse_video_cursor = true
 config.hide_mouse_cursor_when_typing = true
 config.hide_tab_bar_if_only_one_tab = true
+
+local current_dir = os.getenv("PWD") or os.getenv("OLDPWD")
 config.keys = {
 	{ action = wezterm.action.ActivateCommandPalette, mods = "CTRL|SHIFT", key = "P" },
 	{ action = wezterm.action.CopyTo("Clipboard"), mods = "CTRL|SHIFT", key = "C" },
@@ -72,7 +75,7 @@ config.keys = {
 	{ action = wezterm.action.ToggleFullScreen, key = "F11" },
 	-- open new tab
 	{
-		action = wezterm.action.SpawnCommandInNewTab({ args = { "pwsh.exe" }, cwd = wezterm.home_dir }),
+		action = wezterm.action.SpawnCommandInNewTab({ args = { "pwsh.exe" }, cwd = current_dir }),
 		mods = "CTRL|SHIFT",
 		key = "T",
 	},
