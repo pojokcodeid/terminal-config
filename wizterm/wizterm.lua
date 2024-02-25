@@ -1,5 +1,5 @@
 -- buat file di home directory
--- contoh 
+-- contoh
 -- C:\Users\PCode\.wezterm.lua
 -- compu code dibawah ini :
 
@@ -86,6 +86,12 @@ config.keys = {
 	},
 	-- close active tab
 	{ key = "w", mods = "CTRL|SHIFT", action = wezterm.action.CloseCurrentTab({ confirm = true }) },
+	-- open new window ctrl+shift+n
+	{
+		key = "n",
+		mods = "ALT|SHIFT",
+		action = wezterm.action.SpawnCommandInNewWindow({ args = { "pwsh.exe" }, cwd = current_dir }),
+	},
 }
 
 config.scrollback_lines = 10000
