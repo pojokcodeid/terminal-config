@@ -1,3 +1,8 @@
+-- buat file di home directory
+-- contoh 
+-- C:\Users\PCode\.wezterm.lua
+-- compu code dibawah ini :
+
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
 
