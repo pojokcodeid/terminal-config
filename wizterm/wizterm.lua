@@ -47,13 +47,17 @@ config.window_padding = {
 	bottom = 0,
 }
 
+-- add window size initial coll and row
+config.initial_cols = 110
+config.initial_rows = 30
+
 -- add opacity 0.9
 config.window_background_opacity = 0.9
 
 -- set default terminal powershell
 config.default_prog = { "pwsh.exe" }
--- set default cwd
-config.default_cwd = wezterm.home_dir
+-- set default cwd with current active directory
+config.default_cwd = os.getenv("PWD") or os.getenv("OLDPWD")
 
 -- activate font ligature
 config.harfbuzz_features = { "liga=1" }
@@ -68,13 +72,20 @@ config.font = wezterm.font({
 	style = "Normal",
 	harfbuzz_features = { "cv29", "cv30", "ss01", "ss03", "ss06", "ss07", "ss09" },
 })
+-- add set line height
+config.line_height = 1.1
 
 config.disable_default_key_bindings = true
 config.force_reverse_video_cursor = true
 config.hide_mouse_cursor_when_typing = true
 config.hide_tab_bar_if_only_one_tab = true
 
+-- set environment variable for current directory
+config.set_environment_variables = {
+	prompt = "$E]7;file://localhost/$P$E\\$E[32m$T$E[0m $E[35m$P$E[36m$_$G$E[0m ",
+}
 local current_dir = os.getenv("PWD") or os.getenv("OLDPWD")
+
 config.keys = {
 	{ action = wezterm.action.ActivateCommandPalette, mods = "CTRL|SHIFT", key = "P" },
 	{ action = wezterm.action.CopyTo("Clipboard"), mods = "CTRL|SHIFT", key = "C" },
