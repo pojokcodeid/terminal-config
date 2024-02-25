@@ -48,7 +48,11 @@ config.window_background_opacity = 0.9
 
 -- set default terminal powershell
 config.default_prog = { "pwsh.exe" }
+-- set default cwd
+config.default_cwd = wezterm.home_dir
 
+-- Aktifkan ligatur
+config.enable_csi_u_key_encoding = true
 --[[ set font Hasklug Nerd font ]]
 config.font = wezterm.font_with_fallback({
 	{ family = "Hasklug Nerd Font", weight = "Regular" },
