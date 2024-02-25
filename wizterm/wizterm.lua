@@ -23,12 +23,18 @@ config.adjust_window_size_when_changing_font_size = false
 config.audible_bell = "Disabled"
 config.background = {
 	{
-		source = { File = "C:/Users/Asep/Pictures/mycity.png" },
+		source = { File = "C:/Users/Asep/Pictures/wallpaper_tokyonight.png" },
+		horizontal_align = "Center",
+		vertical_align = "Middle",
+		-- height = "Contain",
+		-- width = "Contain",
+		-- repeat_x = "NoRepeat",
+		-- repeat_y = "NoRepeat",
 		opacity = 1,
 	},
 	{
 		source = { File = "C:/Users/Asep/Pictures/tokyonight.png" },
-		opacity = 0.85,
+		opacity = 0.90,
 	},
 }
 config.exit_behavior = "Close"
