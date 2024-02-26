@@ -22,28 +22,29 @@ config.disable_default_key_bindings = true
 config.adjust_window_size_when_changing_font_size = false
 config.audible_bell = "Disabled"
 config.background = {
+	-- {
+	-- 	source = { File = "C:/Users/Asep/Pictures/wallpaper_tokyonight.png" },
+	-- 	horizontal_align = "Center",
+	-- 	vertical_align = "Middle",
+	-- 	-- height = "Contain",
+	-- 	-- width = "Contain",
+	-- 	-- repeat_x = "NoRepeat",
+	-- 	-- repeat_y = "NoRepeat",
+	-- 	opacity = 1,
+	-- },
 	{
-		source = { File = "C:/Users/Asep/Pictures/wallpaper_tokyonight.png" },
-		horizontal_align = "Center",
-		vertical_align = "Middle",
-		-- height = "Contain",
-		-- width = "Contain",
-		-- repeat_x = "NoRepeat",
-		-- repeat_y = "NoRepeat",
+		source = { File = "C:/Users/Asep/Pictures/background_ps.png" },
 		opacity = 1,
 	},
-	{
-		source = { File = "C:/Users/Asep/Pictures/tokyonight.png" },
-		opacity = 0.90,
-	},
 }
+
 config.exit_behavior = "Close"
 
 -- and window padding:
 config.window_padding = {
-	left = 0,
-	right = 0,
-	top = 0,
+	left = 5,
+	right = 5,
+	top = 10,
 	bottom = 0,
 }
 
@@ -51,8 +52,17 @@ config.window_padding = {
 config.initial_cols = 110
 config.initial_rows = 30
 
+-- config.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
+
 -- add opacity 0.9
-config.window_background_opacity = 0.9
+config.window_background_opacity = 1
+-- config.win32_system_backdrop = "Mica" -- Acrylic, Mica, or Tabbed
+-- set window title text
+wezterm.on("format-window-title", function(event)
+	return "Pojok Code"
+end)
+
+-- add window title background color
 
 -- set default terminal powershell
 config.default_prog = { "pwsh.exe" }
@@ -72,6 +82,9 @@ config.font = wezterm.font({
 	style = "Normal",
 	harfbuzz_features = { "cv29", "cv30", "ss01", "ss03", "ss06", "ss07", "ss09" },
 })
+-- set font size 16
+config.font_size = 15
+
 -- add set line height
 config.line_height = 1.1
 
@@ -117,9 +130,6 @@ config.use_dead_keys = false
 config.unicode_version = 15
 config.macos_window_background_blur = 100
 config.window_close_confirmation = "NeverPrompt"
-
--- set font size 16
-config.font_size = 17
 -- set cursor shape
 config.default_cursor_style = "BlinkingBar"
 config.cursor_blink_rate = 700
