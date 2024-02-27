@@ -17,26 +17,53 @@ local config = wezterm.config_builder()
 -- This is where you actually apply your config choices
 
 -- For example, changing the color scheme:
-config.color_scheme = "tokyonight_night"
+local scheme = "tokyonight_night"
+config.color_scheme = scheme
+-- Obtain the definition of that color scheme
+local scheme_def = wezterm.color.get_builtin_schemes()[scheme]
+-- overide background color with #202020
+config.colors = {
+	-- overide background color
+	background = scheme_def.background,
+	-- overide tab background color
+	tab_bar = {
+		active_tab = {
+			bg_color = scheme_def.background,
+			fg_color = scheme_def.foreground,
+		},
+		-- overide tab inactive background color
+		inactive_tab = {
+			bg_color = "#202020",
+			fg_color = scheme_def.foreground,
+		},
+		inactive_tab_edge = "#202020",
+	},
+}
+-- set config window frame title background
+config.window_frame = {
+	active_titlebar_bg = "#202020",
+	inactive_titlebar_bg = "#202020",
+}
+config.tab_bar_at_bottom = false
 config.disable_default_key_bindings = true
 config.adjust_window_size_when_changing_font_size = false
 config.audible_bell = "Disabled"
-config.background = {
-	-- {
-	-- 	source = { File = "C:/Users/Asep/Pictures/wallpaper_tokyonight.png" },
-	-- 	horizontal_align = "Center",
-	-- 	vertical_align = "Middle",
-	-- 	-- height = "Contain",
-	-- 	-- width = "Contain",
-	-- 	-- repeat_x = "NoRepeat",
-	-- 	-- repeat_y = "NoRepeat",
-	-- 	opacity = 1,
-	-- },
-	{
-		source = { File = "C:/Users/Asep/Pictures/background_ps.png" },
-		opacity = 1,
-	},
-}
+-- config.background = {
+-- {
+-- 	source = { File = "C:/Users/Asep/Pictures/wallpaper_tokyonight.png" },
+-- 	horizontal_align = "Center",
+-- 	vertical_align = "Middle",
+-- 	-- height = "Contain",
+-- 	-- width = "Contain",
+-- 	-- repeat_x = "NoRepeat",
+-- 	-- repeat_y = "NoRepeat",
+-- 	opacity = 1,
+-- },
+-- 	{
+-- 		source = { File = "C:/Users/Asep/Pictures/background_ps.png" },
+-- 		opacity = 1,
+-- 	},
+-- }
 
 config.exit_behavior = "Close"
 
@@ -52,14 +79,14 @@ config.window_padding = {
 config.initial_cols = 110
 config.initial_rows = 30
 
--- config.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
+config.window_decorations = "TITLE | RESIZE"
 
 -- add opacity 0.9
 config.window_background_opacity = 1
 -- config.win32_system_backdrop = "Mica" -- Acrylic, Mica, or Tabbed
 -- set window title text
 wezterm.on("format-window-title", function(event)
-	return "Pojok Code"
+	return ""
 end)
 
 -- add window title background color
