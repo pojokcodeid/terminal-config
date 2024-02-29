@@ -23,13 +23,15 @@ config.color_scheme = scheme
 local scheme_def = wezterm.color.get_builtin_schemes()[scheme]
 -- overide background color with #202020
 local bg_custom = "#2e2e2e"
+-- local bg_color = scheme_def.background
+local bg_color = "#202020"
 config.colors = {
 	-- overide background color
-	background = scheme_def.background,
+	background = bg_color,
 	-- overide tab background color
 	tab_bar = {
 		active_tab = {
-			bg_color = scheme_def.background,
+			bg_color = bg_color,
 			fg_color = scheme_def.foreground,
 		},
 		-- overide tab inactive background color
@@ -49,6 +51,8 @@ config.tab_bar_at_bottom = false
 config.disable_default_key_bindings = true
 config.adjust_window_size_when_changing_font_size = false
 config.audible_bell = "Disabled"
+
+-- cinfig image background
 -- config.background = {
 -- {
 -- 	source = { File = "C:/Users/Asep/Pictures/wallpaper_tokyonight.png" },
@@ -168,6 +172,13 @@ config.keys = {
 			end),
 		}),
 	},
+	-- move tab relative
+	{ key = "{", mods = "SHIFT|ALT", action = act.MoveTabRelative(-1) },
+	{ key = "}", mods = "SHIFT|ALT", action = act.MoveTabRelative(1) },
+	-- add tab navigation ctrl + page up
+	{ key = "PageUp", mods = "CTRL", action = act.ActivateTabRelative(-1) },
+	-- add tab navigation ctrl + page down
+	{ key = "PageDown", mods = "CTRL", action = act.ActivateTabRelative(1) },
 }
 
 config.mouse_bindings = {
@@ -190,6 +201,54 @@ config.mouse_bindings = {
 	},
 }
 
+-------------- custom tab start -------------------------
+-- This function returns the suggested title for a tab.
+-- It prefers the title that was set via `tab:set_title()`
+-- or `wezterm cli set-tab-title`, but falls back to the
+-- title of the active pane in that tab.
+-- function tab_title(tab_info)
+-- 	local title = tab_info.tab_title
+-- 	-- if the tab title is explicitly set, take that
+-- 	if title and #title > 0 then
+-- 		return title
+-- 	end
+-- 	-- Otherwise, use the title from the active pane
+-- 	-- in that tab
+-- 	return tab_info.active_pane.title
+-- end
+--
+-- wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+-- 	local edge_background = "#1a1b26"
+-- 	local background = "#1a1b26"
+-- 	local foreground = "#808080"
+--
+-- 	if tab.is_active then
+-- 		foreground = "#dfe3f7"
+-- 	elseif hover then
+-- 		foreground = "#cdcdcd"
+-- 	end
+--
+-- 	local edge_foreground = background
+--
+-- 	local title = tab_title(tab)
+--
+-- 	-- ensure that the titles fit in the available space,
+-- 	-- and that we have room for the edges.
+-- 	title = wezterm.truncate_right(title, max_width + 6)
+--
+-- 	return {
+-- 		{ Background = { Color = edge_background } },
+-- 		{ Foreground = { Color = edge_foreground } },
+-- 		{ Background = { Color = background } },
+-- 		{ Foreground = { Color = foreground } },
+-- 		{ Text = title },
+-- 		{ Background = { Color = edge_background } },
+-- 		{ Foreground = { Color = edge_foreground } },
+-- 	}
+-- end)
+-------------------------------end custom tab ----------------------------------------------
+
+config.show_tab_index_in_tab_bar = false
 config.integrated_title_buttons = { "Hide", "Maximize", "Close" }
 -- config.integrated_title_buttons = { "Close" }
 config.scrollback_lines = 10000
