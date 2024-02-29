@@ -5,7 +5,7 @@
 
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
-
+local act = wezterm.action
 -- config for on load fullscreen
 -- wezterm.on("gui-startup", function(cmd)
 -- 	local _, _, window = wezterm.mux.spawn_window(cmd or {})
@@ -22,6 +22,7 @@ config.color_scheme = scheme
 -- Obtain the definition of that color scheme
 local scheme_def = wezterm.color.get_builtin_schemes()[scheme]
 -- overide background color with #202020
+local bg_custom = "#2e2e2e"
 config.colors = {
 	-- overide background color
 	background = scheme_def.background,
@@ -33,16 +34,16 @@ config.colors = {
 		},
 		-- overide tab inactive background color
 		inactive_tab = {
-			bg_color = "#202020",
+			bg_color = bg_custom,
 			fg_color = scheme_def.foreground,
 		},
-		inactive_tab_edge = "#202020",
+		inactive_tab_edge = bg_custom,
 	},
 }
 -- set config window frame title background
 config.window_frame = {
-	active_titlebar_bg = "#202020",
-	inactive_titlebar_bg = "#202020",
+	active_titlebar_bg = bg_custom,
+	inactive_titlebar_bg = bg_custom,
 }
 config.tab_bar_at_bottom = false
 config.disable_default_key_bindings = true
@@ -72,18 +73,20 @@ config.window_padding = {
 	left = 5,
 	right = 5,
 	top = 10,
-	bottom = 0,
+	bottom = 10,
 }
 
 -- add window size initial coll and row
 config.initial_cols = 110
 config.initial_rows = 30
 
-config.window_decorations = "TITLE | RESIZE"
-
+-- config.window_decorations = "TITLE | RESIZE"
+-- config.window_decorations = "RESIZE"
+config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 -- add opacity 0.9
 config.window_background_opacity = 1
 -- config.win32_system_backdrop = "Mica" -- Acrylic, Mica, or Tabbed
+
 -- set window title text
 wezterm.on("format-window-title", function(event)
 	return ""
@@ -118,7 +121,7 @@ config.line_height = 1.1
 config.disable_default_key_bindings = true
 config.force_reverse_video_cursor = true
 config.hide_mouse_cursor_when_typing = true
-config.hide_tab_bar_if_only_one_tab = true
+-- config.hide_tab_bar_if_only_one_tab = true
 
 -- set environment variable for current directory
 config.set_environment_variables = {
@@ -149,8 +152,46 @@ config.keys = {
 		mods = "ALT|SHIFT",
 		action = wezterm.action.SpawnCommandInNewWindow({ args = { "pwsh.exe" }, cwd = current_dir }),
 	},
+	-- rename table title
+	{
+		key = "E",
+		mods = "CTRL|SHIFT",
+		action = act.PromptInputLine({
+			description = "Enter new name for tab",
+			action = wezterm.action_callback(function(window, pane, line)
+				-- line will be `nil` if they hit escape without entering anything
+				-- An empty string if they just hit enter
+				-- Or the actual line of text they wrote
+				if line then
+					window:active_tab():set_title(line)
+				end
+			end),
+		}),
+	},
 }
 
+config.mouse_bindings = {
+	{
+		event = { Drag = { streak = 1, button = "Left" } },
+		mods = "SUPER",
+		action = wezterm.action.StartWindowDrag,
+	},
+	-- drag drop window CTRL + Mouse Left
+	{
+		event = { Drag = { streak = 1, button = "Left" } },
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.StartWindowDrag,
+	},
+	-- Ctrl-click will open the link under the mouse cursor
+	{
+		event = { Up = { streak = 1, button = "Left" } },
+		mods = "SHIFT",
+		action = wezterm.action.OpenLinkAtMouseCursor,
+	},
+}
+
+config.integrated_title_buttons = { "Hide", "Maximize", "Close" }
+-- config.integrated_title_buttons = { "Close" }
 config.scrollback_lines = 10000
 config.show_update_window = true
 config.use_dead_keys = false
