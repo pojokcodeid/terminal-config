@@ -205,6 +205,18 @@ config.keys = {
 	{ key = "LeftArrow", mods = "ALT|SHIFT", action = act.AdjustPaneSize({ "Left", 1 }) },
 	-- resize panel right alt+shift+right
 	{ key = "RightArrow", mods = "ALT|SHIFT", action = act.AdjustPaneSize({ "Right", 1 }) },
+	-- key alt + UpArrow will send string ALT + k
+	{ key = "UpArrow", mods = "ALT", action = act.SendKey({ key = "k", mods = "ALT" }) },
+	-- key alt + DownArrow will send string ALT + j
+	{ key = "DownArrow", mods = "ALT", action = act.SendKey({ key = "j", mods = "ALT" }) },
+	-- key alt + LeftArrow will send string ALT + LeftArrow
+	{ key = "LeftArrow", mods = "ALT", action = act.SendKey({ key = "LeftArrow", mods = "ALT" }) },
+	-- key alt + RightArrow will send string ALT + RightArrow
+	{ key = "RightArrow", mods = "ALT", action = act.SendKey({ key = "RightArrow", mods = "ALT" }) },
+	-- set for duplicate key vscode shift-alt-up
+	{ key = "UpArrow", mods = "SHIFT|ALT", action = act.SendKey({ key = "UpArrow", mods = "SHIFT" }) },
+	-- set for duplicate key vscode shift-alt-down
+	{ key = "DownArrow", mods = "SHIFT|ALT", action = act.SendKey({ key = "DownArrow", mods = "SHIFT" }) },
 }
 
 -- add mouse keys mapping
@@ -220,7 +232,7 @@ config.mouse_bindings = {
 		mods = "CTRL|SHIFT",
 		action = wezterm.action.StartWindowDrag,
 	},
-	-- Ctrl-click will open the link under the mouse cursor
+	-- shift-click will open the link under the mouse cursor
 	{
 		event = { Up = { streak = 1, button = "Left" } },
 		mods = "SHIFT",
