@@ -24,9 +24,12 @@ config.color_scheme = scheme
 -- Obtain the definition of that color scheme
 local scheme_def = wezterm.color.get_builtin_schemes()[scheme]
 -- overide background color
-local bg_custom = "#2e2e2e"
--- local bg_color = scheme_def.background
-local bg_color = "#202020"
+-- local bg_custom = "#2e2e2e"
+local bg_custom = "#1a1b26"
+local bg_color = scheme_def.background
+-- local bg_color = "#202020"
+local fg_inactive = "#565f89"
+local bg_newtab = "#24283b"
 config.colors = {
 	-- overide background color
 	background = bg_color,
@@ -39,9 +42,14 @@ config.colors = {
 		-- overide tab inactive background color
 		inactive_tab = {
 			bg_color = bg_custom,
-			fg_color = scheme_def.foreground,
+			fg_color = fg_inactive,
 		},
 		inactive_tab_edge = bg_custom,
+		-- add custom new tab button background
+		new_tab = {
+			bg_color = bg_newtab,
+			fg_color = scheme_def.foreground,
+		},
 	},
 }
 -- set config window frame title background
