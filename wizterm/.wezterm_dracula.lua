@@ -308,5 +308,6 @@ config.window_close_confirmation = "NeverPrompt"
 -- set cursor shape
 config.default_cursor_style = "BlinkingBar"
 config.cursor_blink_rate = 700
+config.force_reverse_video_cursor = false
 -- and finally, return the configuration to wezterm
 return config
