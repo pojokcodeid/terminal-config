@@ -123,19 +123,6 @@ config.initial_rows = 30
 -- config.window_decorations = "TITLE | RESIZE"
 -- config.window_decorations = "RESIZE"
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
-config.show_tab_index_in_tab_bar = false
-config.integrated_title_buttons = { "Hide", "Maximize", "Close" }
--- config.integrated_title_buttons = { "Close" }
-config.scrollback_lines = 10000
-config.show_update_window = true
-config.use_dead_keys = false
-config.unicode_version = 15
-config.macos_window_background_blur = 100
-config.window_close_confirmation = "NeverPrompt"
--- set cursor shape
-config.default_cursor_style = "BlinkingBar"
-config.cursor_blink_rate = 600
-config.force_reverse_video_cursor = false
 
 -- add opacity
 config.window_background_opacity = 1
@@ -334,6 +321,19 @@ config.mouse_bindings = {
 -- 	}
 -- end)
 -------------------------------end custom tab ----------------------------------------------
+config.show_tab_index_in_tab_bar = false
+config.integrated_title_buttons = { "Hide", "Maximize", "Close" }
+-- config.integrated_title_buttons = { "Close" }
+config.scrollback_lines = 10000
+config.show_update_window = true
+config.use_dead_keys = false
+config.unicode_version = 15
+config.macos_window_background_blur = 100
+config.window_close_confirmation = "NeverPrompt"
+-- set cursor shape
+config.default_cursor_style = "BlinkingBar"
+config.cursor_blink_rate = 600
+config.force_reverse_video_cursor = false
 
 -- and finally, return the configuration to wezterm
 return config
