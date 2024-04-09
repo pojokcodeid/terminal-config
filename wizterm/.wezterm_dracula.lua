@@ -18,16 +18,26 @@ local config = wezterm.config_builder()
 
 -- This is where you actually apply your config choices
 -- For example, changing the color scheme:
-local scheme = "Dracula (Official)"
+-- local scheme = "tokyonight_night"
+-- local scheme = "tokyonight_storm"
+-- local scheme = "nightfox"
+-- local scheme = "Dracula (Official)"
+local scheme = "OneDark (base16)"
+-- local scheme = "One Dark (Gogh)"
 config.color_scheme = scheme
 
 -- Obtain the definition of that color scheme
 local scheme_def = wezterm.color.get_builtin_schemes()[scheme]
 -- overide background color
 -- local bg_custom = "#2e2e2e"
--- local bg_custom = "#1a1b26"
-local bg_custom = "#282A36"
-local bg_color = scheme_def.background
+-- local bg_custom = "#24283B" -- custom for tokyonight storm
+-- local bg_custom = "#282c34" -- custom for onedark pro
+local bg_custom = "#1e222a" -- custom for onedark pro
+-- local bg_custom = "#282A36" -- custom for dracula
+-- local bg_custom = "#1a1b26" -- custom for tokyonight
+-- local bg_custom = "#192330" -- custom for nightfox
+-- local bg_color = scheme_def.background
+local bg_color = bg_custom
 -- local bg_color = "#202020"
 local fg_inactive = "#565f89"
 local bg_newtab = "#24283b"
@@ -59,6 +69,20 @@ config.window_frame = {
 	inactive_titlebar_bg = bg_custom,
 }
 
+-- get current folder
+
+-- custom dir active
+-- wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+-- 	local title = current_folder or "Pojok Code"
+-- 	if tab.is_active then
+-- 		return {
+-- 			{ Text = " " .. title .. " " },
+-- 		}
+-- 	end
+-- 	return title
+-- end)
+
+config.tab_max_width = 16
 config.tab_bar_at_bottom = false
 config.disable_default_key_bindings = true
 config.adjust_window_size_when_changing_font_size = false
@@ -99,6 +123,19 @@ config.initial_rows = 30
 -- config.window_decorations = "TITLE | RESIZE"
 -- config.window_decorations = "RESIZE"
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
+config.show_tab_index_in_tab_bar = false
+config.integrated_title_buttons = { "Hide", "Maximize", "Close" }
+-- config.integrated_title_buttons = { "Close" }
+config.scrollback_lines = 10000
+config.show_update_window = true
+config.use_dead_keys = false
+config.unicode_version = 15
+config.macos_window_background_blur = 100
+config.window_close_confirmation = "NeverPrompt"
+-- set cursor shape
+config.default_cursor_style = "BlinkingBar"
+config.cursor_blink_rate = 600
+config.force_reverse_video_cursor = false
 
 -- add opacity
 config.window_background_opacity = 1
@@ -110,7 +147,7 @@ wezterm.on("format-window-title", function(event)
 end)
 
 -- set default terminal powershell
-config.default_prog = { "pwsh.exe" }
+config.default_prog = { "pwsh.exe -nologo" }
 -- set default cwd with current active directory
 config.default_cwd = os.getenv("PWD") or os.getenv("OLDPWD")
 
@@ -122,12 +159,14 @@ config.harfbuzz_features = { "liga=1" }
 -- })
 config.font = wezterm.font({
 	family = "Hasklug Nerd Font",
-	weight = "Medium",
+	-- family = "SauceCodePro Nerd Font",
+	weight = "Medium", -- Normal, Medium, Bold, DemiBold
 	stretch = "Normal",
 	style = "Normal",
 	harfbuzz_features = { "cv29", "cv30", "ss01", "ss03", "ss06", "ss07", "ss09" },
 })
-
+config.freetype_load_flags = "NO_HINTING"
+config.front_end = "Software" -- WebGpu or OpenGL or Software
 -- set font size 16
 config.font_size = 15
 -- add set line height
@@ -296,18 +335,5 @@ config.mouse_bindings = {
 -- end)
 -------------------------------end custom tab ----------------------------------------------
 
-config.show_tab_index_in_tab_bar = false
-config.integrated_title_buttons = { "Hide", "Maximize", "Close" }
--- config.integrated_title_buttons = { "Close" }
-config.scrollback_lines = 10000
-config.show_update_window = true
-config.use_dead_keys = false
-config.unicode_version = 15
-config.macos_window_background_blur = 100
-config.window_close_confirmation = "NeverPrompt"
--- set cursor shape
-config.default_cursor_style = "BlinkingBar"
-config.cursor_blink_rate = 700
-config.force_reverse_video_cursor = false
 -- and finally, return the configuration to wezterm
 return config
