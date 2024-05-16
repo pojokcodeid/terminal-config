@@ -22,7 +22,8 @@ local config = wezterm.config_builder()
 -- local scheme = "tokyonight_storm"
 -- local scheme = "nightfox"
 -- local scheme = "Dracula (Official)"
-local scheme = "OneDark (base16)"
+-- local scheme = "OneDark (base16)"
+local scheme = "GitHub Dark"
 -- local scheme = "One Dark (Gogh)"
 config.color_scheme = scheme
 
@@ -32,7 +33,8 @@ local scheme_def = wezterm.color.get_builtin_schemes()[scheme]
 -- local bg_custom = "#2e2e2e"
 -- local bg_custom = "#24283B" -- custom for tokyonight storm
 -- local bg_custom = "#282c34" -- custom for onedark pro
-local bg_custom = "#1e222a" -- custom for onedark pro
+local bg_custom = "#22272e" -- custom for github
+-- local bg_custom = "#1e222a" -- custom for onedark pro
 -- local bg_custom = "#282A36" -- custom for dracula
 -- local bg_custom = "#1a1b26" -- custom for tokyonight
 -- local bg_custom = "#192330" -- custom for nightfox
@@ -145,8 +147,10 @@ config.harfbuzz_features = { "liga=1" }
 -- 	{ family = "Hasklug Nerd Font", weight = "Medium" },
 -- })
 config.font = wezterm.font({
-	family = "Hasklug Nerd Font",
-	-- family = "SauceCodePro Nerd Font",
+	-- family = "FiraCode Nerd Font",
+	-- family = "Hasklug Nerd Font",
+	-- family = "JetBrainsMono Nerd Font",
+	family = "SauceCodePro Nerd Font",
 	weight = "Medium", -- Normal, Medium, Bold, DemiBold
 	stretch = "Normal",
 	style = "Normal",
@@ -155,9 +159,9 @@ config.font = wezterm.font({
 config.freetype_load_flags = "NO_HINTING"
 config.front_end = "Software" -- WebGpu or OpenGL or Software
 -- set font size 16
-config.font_size = 15
+config.font_size = 16
 -- add set line height
-config.line_height = 1.1
+-- config.line_height = 1.1
 
 config.disable_default_key_bindings = true
 config.force_reverse_video_cursor = true
@@ -252,6 +256,34 @@ config.keys = {
 	{ key = "UpArrow", mods = "SHIFT|ALT", action = act.SendKey({ key = "UpArrow", mods = "SHIFT" }) },
 	-- set for duplicate key vscode shift-alt-down
 	{ key = "DownArrow", mods = "SHIFT|ALT", action = act.SendKey({ key = "DownArrow", mods = "SHIFT" }) },
+	-- set ctrl + v for paste Clipboard
+	{ key = "v", mods = "CTRL", action = wezterm.action({ PasteFrom = "Clipboard" }) },
+	{
+		key = "x",
+		mods = "CTRL",
+		action = wezterm.action_callback(function(window, pane)
+			local has_selection = window:get_selection_text_for_pane(pane) ~= ""
+			if has_selection then
+				window:perform_action(act.CopyTo("ClipboardAndPrimarySelection"), pane)
+
+				window:perform_action(act.ClearSelection, pane)
+			else
+				window:perform_action(act.SendKey({ key = "x", mods = "CTRL" }), pane)
+			end
+		end),
+	},
+	{
+		key = "c",
+		mods = "CTRL",
+		action = wezterm.action_callback(function(window, pane)
+			local sel = window:get_selection_text_for_pane(pane)
+			if not sel or sel == "" then
+				window:perform_action(wezterm.action.SendKey({ key = "c", mods = "CTRL" }), pane)
+			else
+				window:perform_action(wezterm.action({ CopyTo = "ClipboardAndPrimarySelection" }), pane)
+			end
+		end),
+	},
 }
 
 -- add mouse keys mapping
@@ -271,6 +303,12 @@ config.mouse_bindings = {
 	{
 		event = { Up = { streak = 1, button = "Left" } },
 		mods = "SHIFT",
+		action = wezterm.action.OpenLinkAtMouseCursor,
+	},
+	-- Ctrl-click will open the link under the mouse cursor
+	{
+		event = { Up = { streak = 1, button = "Left" } },
+		mods = "CTRL",
 		action = wezterm.action.OpenLinkAtMouseCursor,
 	},
 }
@@ -325,7 +363,7 @@ config.show_tab_index_in_tab_bar = false
 config.integrated_title_buttons = { "Hide", "Maximize", "Close" }
 -- config.integrated_title_buttons = { "Close" }
 config.scrollback_lines = 10000
-config.show_update_window = true
+-- config.show_update_window = true
 config.use_dead_keys = false
 config.unicode_version = 15
 config.macos_window_background_blur = 100
