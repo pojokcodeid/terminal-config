@@ -18,15 +18,30 @@ local config = wezterm.config_builder()
 
 -- This is where you actually apply your config choices
 -- For example, changing the color scheme:
-local scheme = "tokyonight_night"
+-- local scheme = "tokyonight_night"
+-- local scheme = "tokyonight_storm"
+-- local scheme = "nightfox"
+local scheme = "Dracula (Official)"
+-- local scheme = "JetBrains Darcula"
+-- local scheme = "OneDark (base16)"
+-- local scheme = "GitHub Dark"
+-- local scheme = "One Dark (Gogh)"
 config.color_scheme = scheme
 
 -- Obtain the definition of that color scheme
 local scheme_def = wezterm.color.get_builtin_schemes()[scheme]
 -- overide background color
 -- local bg_custom = "#2e2e2e"
-local bg_custom = "#1a1b26"
-local bg_color = scheme_def.background
+-- local bg_custom = "#24283B" -- custom for tokyonight storm
+-- local bg_custom = "#282c34" -- custom for onedark pro
+-- local bg_custom = "#22272e" -- custom for github
+-- local bg_custom = "#1e222a" -- custom for onedark pro
+-- local bg_custom = "#2b2b2b" -- custom for dracula jetbrains
+local bg_custom = "#282A36" -- custom for dracula
+-- local bg_custom = "#1a1b26" -- custom for tokyonight
+-- local bg_custom = "#192330" -- custom for nightfox
+-- local bg_color = scheme_def.background
+local bg_color = bg_custom
 -- local bg_color = "#202020"
 local fg_inactive = "#565f89"
 local bg_newtab = "#24283b"
@@ -58,6 +73,20 @@ config.window_frame = {
 	inactive_titlebar_bg = bg_custom,
 }
 
+-- get current folder
+
+-- custom dir active
+-- wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+-- 	local title = current_folder or "Pojok Code"
+-- 	if tab.is_active then
+-- 		return {
+-- 			{ Text = " " .. title .. " " },
+-- 		}
+-- 	end
+-- 	return title
+-- end)
+
+config.tab_max_width = 16
 config.tab_bar_at_bottom = false
 config.disable_default_key_bindings = true
 config.adjust_window_size_when_changing_font_size = false
@@ -109,7 +138,7 @@ wezterm.on("format-window-title", function(event)
 end)
 
 -- set default terminal powershell
-config.default_prog = { "pwsh.exe" }
+config.default_prog = { "pwsh.exe -nologo" }
 -- set default cwd with current active directory
 config.default_cwd = os.getenv("PWD") or os.getenv("OLDPWD")
 
@@ -120,17 +149,21 @@ config.harfbuzz_features = { "liga=1" }
 -- 	{ family = "Hasklug Nerd Font", weight = "Medium" },
 -- })
 config.font = wezterm.font({
-	family = "Hasklug Nerd Font",
-	weight = "Medium",
+	-- family = "FiraCode Nerd Font",
+	-- family = "Hasklug Nerd Font",
+	-- family = "JetBrainsMono Nerd Font",
+	family = "SauceCodePro Nerd Font",
+	weight = "Medium", -- Normal, Medium, Bold, DemiBold
 	stretch = "Normal",
 	style = "Normal",
 	harfbuzz_features = { "cv29", "cv30", "ss01", "ss03", "ss06", "ss07", "ss09" },
 })
-
+config.freetype_load_flags = "NO_HINTING"
+config.front_end = "Software" -- WebGpu or OpenGL or Software
 -- set font size 16
-config.font_size = 15
+config.font_size = 16
 -- add set line height
-config.line_height = 1.1
+-- config.line_height = 1.1
 
 config.disable_default_key_bindings = true
 config.force_reverse_video_cursor = true
@@ -225,6 +258,34 @@ config.keys = {
 	{ key = "UpArrow", mods = "SHIFT|ALT", action = act.SendKey({ key = "UpArrow", mods = "SHIFT" }) },
 	-- set for duplicate key vscode shift-alt-down
 	{ key = "DownArrow", mods = "SHIFT|ALT", action = act.SendKey({ key = "DownArrow", mods = "SHIFT" }) },
+	-- set ctrl + v for paste Clipboard
+	{ key = "v", mods = "CTRL", action = wezterm.action({ PasteFrom = "Clipboard" }) },
+	{
+		key = "x",
+		mods = "CTRL",
+		action = wezterm.action_callback(function(window, pane)
+			local has_selection = window:get_selection_text_for_pane(pane) ~= ""
+			if has_selection then
+				window:perform_action(act.CopyTo("ClipboardAndPrimarySelection"), pane)
+
+				window:perform_action(act.ClearSelection, pane)
+			else
+				window:perform_action(act.SendKey({ key = "x", mods = "CTRL" }), pane)
+			end
+		end),
+	},
+	{
+		key = "c",
+		mods = "CTRL",
+		action = wezterm.action_callback(function(window, pane)
+			local sel = window:get_selection_text_for_pane(pane)
+			if not sel or sel == "" then
+				window:perform_action(wezterm.action.SendKey({ key = "c", mods = "CTRL" }), pane)
+			else
+				window:perform_action(wezterm.action({ CopyTo = "ClipboardAndPrimarySelection" }), pane)
+			end
+		end),
+	},
 }
 
 -- add mouse keys mapping
@@ -244,6 +305,12 @@ config.mouse_bindings = {
 	{
 		event = { Up = { streak = 1, button = "Left" } },
 		mods = "SHIFT",
+		action = wezterm.action.OpenLinkAtMouseCursor,
+	},
+	-- Ctrl-click will open the link under the mouse cursor
+	{
+		event = { Up = { streak = 1, button = "Left" } },
+		mods = "CTRL",
 		action = wezterm.action.OpenLinkAtMouseCursor,
 	},
 }
@@ -294,18 +361,19 @@ config.mouse_bindings = {
 -- 	}
 -- end)
 -------------------------------end custom tab ----------------------------------------------
-
 config.show_tab_index_in_tab_bar = false
 config.integrated_title_buttons = { "Hide", "Maximize", "Close" }
 -- config.integrated_title_buttons = { "Close" }
 config.scrollback_lines = 10000
-config.show_update_window = true
+-- config.show_update_window = true
 config.use_dead_keys = false
 config.unicode_version = 15
 config.macos_window_background_blur = 100
 config.window_close_confirmation = "NeverPrompt"
 -- set cursor shape
 config.default_cursor_style = "BlinkingBar"
-config.cursor_blink_rate = 700
+config.cursor_blink_rate = 600
+config.force_reverse_video_cursor = false
+
 -- and finally, return the configuration to wezterm
 return config
