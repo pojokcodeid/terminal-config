@@ -1,0 +1,435 @@
+{
+  "explorer.autoReveal": true,
+  "editor.lineNumbers": "relative",
+  "editor.fontSize": 19,
+  "editor.lineHeight": 1.7,
+  "editor.fontFamily": "'Hasklug Nerd Font','Iosevka Nerd Font','Source Code Pro',Consolas,'Source Code Pro','Fantasque Sans Mono'",
+  "editor.fontLigatures": true,
+  "workbench.startupEditor": "none",
+  "scm.inputFontSize": 17,
+  "debug.console.fontSize": 17,
+  "markdown.preview.fontSize": 17,
+  "terminal.integrated.fontSize": 14,
+  "editor.minimap.autohide": true,
+  "editor.minimap.scale": 1,
+  "timeline.pageOnScroll": true,
+  "editor.cursorBlinking": "expand",
+  "editor.stickyScroll.enabled": true,
+  "editor.fontVariations": false,
+  "editor.accessibilitySupport": "off",
+  "terminal.integrated.fontWeight": "normal",
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "editor.linkedEditing": true,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorStyle": "line",
+  "codeium.enableConfig": {
+    "*": true,
+    "markdown": true,
+    "ignore": true,
+    "properties": true,
+    "xml": true,
+    "plaintext": true,
+    "cfml": true,
+    "tailwindcss": true
+  },
+  "auto-close-tag.excludedTags": [
+    "area",
+    "base",
+    "br",
+    "col",
+    "command",
+    "embed",
+    "hr",
+    "img",
+    "input",
+    "keygen",
+    "link",
+    "meta",
+    "param",
+    "source",
+    "track",
+    "wbr",
+    "cfabort",
+    "cfapplication",
+    "cfargument",
+    "cfassociate",
+    "cfbreak",
+    "cfchartdata",
+    "cfcollection",
+    "cfcontent",
+    "cfcontinue",
+    "cfcookie",
+    "cfdirectory",
+    "cfdump",
+    "cfelse",
+    "cfelseif",
+    "cferror",
+    "cfexecute",
+    "cfexit",
+    "cffile",
+    "cfflush",
+    "cfheader",
+    "cfhttpparam",
+    "cfimage",
+    "cfimport",
+    "cfinclude",
+    "cfindex",
+    "cfinput",
+    "cfinvokeargument",
+    "cflocation",
+    "cflog",
+    "cfloginuser",
+    "cflogout",
+    "cfmailparam",
+    "cfobject",
+    "cfobjectcache",
+    "cfparam",
+    "cfpop",
+    "cfprocessingdirective",
+    "cfprocparam",
+    "cfprocresult",
+    "cfproperty",
+    "cfqueryparam",
+    "cfregistry",
+    "cfreportparam",
+    "cfrethrow",
+    "cfreturn",
+    "cfschedule",
+    "cfspreadsheet",
+    "cfsearch",
+    "cfset",
+    "cfsetting",
+    "cfthrow",
+    "cfwddx"
+  ],
+  "editor.fontWeight": "normal",
+  "editor.tabSize": 2,
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "workbench.editor.enablePreview": false,
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "extensions.ignoreRecommendations": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact",
+    "css": "css",
+    "ejs": "html"
+  },
+  "auto-rename-tag.activationOnLanguage": [
+    "*",
+    "javascriptreact",
+    "typescriptreact",
+    "css"
+  ],
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.rulers": [80],
+  // "workbench.iconTheme": "material-icon-theme",
+  "files.associations": {
+    "*.ejs": "html"
+  },
+  "html.format.templating": true,
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "workbench.editorAssociations": {
+    "*.gz": "default"
+  },
+  "errorLens.gutterIconSet": "circle",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "git.openRepositoryInParentFolders": "never",
+  "workbench.iconTheme": "pcode-icon-theme-dark-minimalis2",
+  "editor.defaultColorDecorators": true,
+  "security.allowedUNCHosts": ["wsl.localhost"],
+
+  "javascript.preferences.importModuleSpecifierEnding": "js",
+
+  // "workbench.tree.indent": 15,
+  "workbench.tree.renderIndentGuides": "none",
+  "editor.minimap.renderCharacters": false,
+  "jest.runMode": "deferred",
+  "symbols.hidesExplorerArrows": false,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.donotVerifyTags": true,
+  "code-runner.runInTerminal": true,
+  "workbench.productIconTheme": "fluenticon",
+  "window.menuBarVisibility": "compact",
+  "window.commandCenter": false,
+  "workbench.colorTheme": "Github Dark",
+  // start neovim config
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "vscode-neovim.neovimExecutablePaths.win32": "C:\\Program Files\\Neovim\\bin\\nvim.exe",
+  "vscode-neovim.neovimInitVimPaths.win32": "C:\\Users\\Asep\\AppData\\Local\\nvim\\init.lua",
+  "whichkey.delay": 0,
+  "whichkey.sortOrder": "alphabetically",
+  "whichkey.bindings": [
+    {
+      "key": ";",
+      "name": "commands",
+      "type": "command",
+      "command": "workbench.action.showCommands"
+    },
+    {
+      "key": "c",
+      "name": "Chat with AI",
+      "type": "command",
+      "command": "codeium.openChatView"
+    },
+    {
+      "key": "k",
+      "name": "Close active editor",
+      "type": "command",
+      "command": "workbench.action.closeActiveEditor"
+    },
+    {
+      "key": "q",
+      "name": "Kill Terminal",
+      "type": "command",
+      "command": "workbench.action.terminal.kill"
+    },
+    {
+      "key": "t",
+      "name": "Open Terminal",
+      "type": "command",
+      "command": "workbench.action.terminal.focus"
+    },
+    {
+      "key": "b",
+      "name": "+ Buffers/Editors...",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "b",
+          "name": "Show all buffers/editors",
+          "type": "command",
+          "command": "workbench.action.showAllEditors"
+        },
+        {
+          "key": "m",
+          "name": "Close other editors",
+          "type": "command",
+          "command": "workbench.action.closeOtherEditors"
+        },
+        {
+          "key": "u",
+          "name": "Reopen closed editor",
+          "type": "command",
+          "command": "workbench.action.reopenClosedEditor"
+        },
+        {
+          "key": "y",
+          "name": "Copy buffer to clipboard",
+          "type": "commands",
+          "commands": [
+            "editor.action.selectAll",
+            "editor.action.clipboardCopyAction",
+            "cancelSelection"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "g",
+      "name": "Toggle Git",
+      "type": "command",
+      "command": "workbench.view.scm"
+    },
+    {
+      "key": "d",
+      "name": "Toggle Debug",
+      "type": "command",
+      "command": "workbench.view.debug"
+    },
+    /*   {
+      "key": "x",
+      "name": "Toggle Extensions",
+      "type": "command",
+      "command": "workbench.view.extensions"
+    }, */
+    {
+      "key": "e",
+      "name": "Open Exploler",
+      "type": "command",
+      "command": "workbench.view.explorer",
+      "when": "viewContainer.workbench.view.explorer.enabled"
+    },
+    {
+      "key": "w",
+      "name": "Close Exploler",
+      "type": "command",
+      "command": "workbench.action.toggleSidebarVisibility",
+      "when": "viewContainer.workbench.view.sidebar.enabled"
+    },
+    {
+      "key": "f",
+      "name": "+ Find & Replace...",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "f",
+          "name": "File",
+          "type": "command",
+          "command": "editor.action.startFindReplaceAction"
+        },
+        {
+          "key": "s",
+          "name": "Symbol",
+          "type": "command",
+          "command": "editor.action.rename",
+          "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+        },
+        {
+          "key": "p",
+          "name": "Project",
+          "type": "command",
+          "command": "workbench.action.replaceInFiles"
+        }
+      ]
+    },
+    {
+      "key": "\\",
+      "name": "+ Split",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "h",
+          "name": "Split Horizontal",
+          "type": "command",
+          "command": "workbench.action.splitEditorDown"
+        },
+        {
+          "key": "v",
+          "name": "Split Vertical",
+          "type": "command",
+          "command": "workbench.action.splitEditor"
+        }
+      ]
+    },
+    {
+      "key": "s",
+      "name": "+ Search...",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "f",
+          "name": "files",
+          "type": "command",
+          "command": "workbench.action.quickOpen"
+        },
+        {
+          "key": "t",
+          "name": "text",
+          "type": "command",
+          "command": "workbench.action.findInFiles"
+        }
+      ]
+    },
+    {
+      "key": "z",
+      "name": "Toggle zen mode",
+      "type": "command",
+      "command": "workbench.action.toggleZenMode"
+    },
+    {
+      "key": "u",
+      "name": "+ UI",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "i",
+          "name": "Icon Theme",
+          "type": "command",
+          "command": "workbench.action.selectIconTheme"
+        },
+        {
+          "key": "t",
+          "name": "Color Theme",
+          "type": "command",
+          "command": "workbench.action.selectTheme"
+        }
+      ]
+    },
+    {
+      "key": "l",
+      "name": "+ Live Server",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "o",
+          "name": "Open LiveServer",
+          "type": "command",
+          "command": "extension.liveServer.goOnline",
+          "when": "editorTextFocus"
+        },
+        {
+          "key": "c",
+          "name": "Close LiveServer",
+          "type": "command",
+          "command": "extension.liveServer.goOffline",
+          "when": "editorTextFocus"
+        }
+      ]
+    }
+  ],
+  "editor.suggestSelection": "first",
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  },
+  // nvim style mode
+  "nvim-ui.nvimColorNormal": "#7aa2f7",
+  "nvim-ui.nvimColorInsert": "#9ece6a",
+  "nvim-ui.nvimColorVisual": "#bb9af7",
+  "nvim-ui.nvimColorReplace": "#000",
+  "nvim-ui.nvimColorCustomizationKeys": [
+    // "editor.lineHighlightBorder",
+    "activityBar.activeBorder",
+    "panelTitle.activeBorder",
+    "tab.activeBorderTop",
+    "editorCursor.foreground",
+    "activityBarBae.background",
+    "statusBarItem.remoteBackground"
+  ],
+  "workbench.colorCustomizations": {
+    "list.focusBackground": "#4b6eaf10",
+    "focusBorder": "#409eff80",
+    "editor.lineHighlightBackground": "#1F1F4100",
+    "editor.lineHighlightBorder": "#7aa2f760",
+    "editorCursor.foreground": "#9ece6a",
+    "activityBarBadge.background": "#7aa2f7",
+    "statusBarItem.remoteBackground": "#9ece6a",
+    "activityBarBae.background": "#9ece6a",
+    "tab.activeBorderTop": "#9ece6a",
+    "activityBar.activeBorder": "#9ece6a",
+    "panelTitle.activeBorder": "#9ece6a"
+  },
+  "window.zoomLevel": 1,
+  // end neovim config
+  "css.lint.unknownAtRules": "ignore",
+  "workbench.activityBar.location": "top",
+  "prisma.showPrismaDataPlatformNotification": false
+}
