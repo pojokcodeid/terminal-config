@@ -2,7 +2,6 @@
 -- contoh
 -- C:\Users\PCode\.wezterm.lua
 -- compu code dibawah ini :
-
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
 local act = wezterm.action
@@ -53,7 +52,8 @@ local bg_color = "#2b2b2b" -- cutem for dracula jetbrains
 local fg_inactive = "#999999"
 -- local bg_newtab = "#24283b"
 local bg_newtab = bg_custom
-local bg_inactive_hover = "#24283b"
+-- local bg_inactive_hover = "#24283b"
+local bg_inactive_hover = bg_color
 config.colors = {
 	-- overide background color
 	background = bg_color,
@@ -157,9 +157,9 @@ wezterm.on("format-window-title", function(event)
 end)
 
 -- set default terminal powershell
-config.default_prog = { "pwsh.exe -nologo" }
+config.default_prog = { "pwsh.exe -NoLogo" }
 -- set default cwd with current active directory
-config.default_cwd = os.getenv("PWD") or os.getenv("OLDPWD")
+config.default_cwd = os.getenv("PWD")
 
 -- activate font ligature
 config.harfbuzz_features = { "liga=1" }
@@ -193,7 +193,7 @@ config.hide_mouse_cursor_when_typing = true
 config.set_environment_variables = {
 	prompt = "$E]7;file://localhost/$P$E\\$E[32m$T$E[0m $E[35m$P$E[36m$_$G$E[0m ",
 }
-local current_dir = os.getenv("PWD") or os.getenv("OLDPWD")
+local current_dir = os.getenv("PWD")
 
 -- add keys mapping
 config.keys = {
@@ -207,9 +207,9 @@ config.keys = {
 	{ action = wezterm.action.ToggleFullScreen, key = "F11" },
 	-- open new tab
 	{
-		action = wezterm.action.SpawnCommandInNewTab({ args = { "pwsh.exe" }, cwd = current_dir }),
+		action = wezterm.action.SpawnCommandInNewTab({ args = { "pwsh.exe -NoLogo" }, cwd = current_dir }),
 		mods = "CTRL|SHIFT",
-		key = "T",
+		key = "t",
 	},
 	-- close active tab
 	{ key = "w", mods = "CTRL|SHIFT", action = wezterm.action.CloseCurrentTab({ confirm = true }) },
@@ -217,7 +217,7 @@ config.keys = {
 	{
 		key = "n",
 		mods = "ALT|SHIFT",
-		action = wezterm.action.SpawnCommandInNewWindow({ args = { "pwsh.exe" }, cwd = current_dir }),
+		action = wezterm.action.SpawnCommandInNewWindow({ args = { "pwsh.exe -NoLogo" }, cwd = current_dir }),
 	},
 	-- rename table title
 	{
