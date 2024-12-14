@@ -103,25 +103,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export PATH=/home/pcode/nvim/bin:$PATH
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-alias ci=code-insiders
-alias cls=clear
-alias python=python3
-. "/home/pcode/.deno/env"
-export PATH=$PATH:/usr/local/go/bin
-. "$HOME/.cargo/env"
-
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# Enable history search with fzf 
-bindkey '^R' fzf-history-widget
-
 alias l="eza --icons"
 alias ls="eza --icons"
 alias ll="eza -lg --icons"
@@ -135,8 +116,6 @@ alias lta1="eza -lTag --level=1 --icons"
 alias lta2="eza -lTag --level=2 --icons"
 alias lta3="eza -lTag --level=3 --icons"
 
-export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
-export PATH=$PATH:$JAVA_HOME/bin
-
-export PATH=/opt/gradle/bin:$PATH
-export PATH="$PATH:/usr/local/bin"
+alias ci=code-insiders
+alias cls=clear
+alias python=python3
