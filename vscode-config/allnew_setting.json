@@ -1,0 +1,48 @@
+{
+  "workbench.iconTheme": "pcode-icon-theme-dark-minimalis",
+  "workbench.colorTheme": "Dracula Fleet",
+  "workbench.productIconTheme": "fluenticon",
+  "window.menuBarVisibility": "compact",
+  "window.commandCenter": false,
+  "workbench.layoutControl.enabled": false,
+  "workbench.activityBar.location": "top",
+  "explorer.autoReveal": true,
+  "editor.lineNumbers": "relative",
+  "window.zoomLevel": 1,
+  "editor.fontSize": 17,
+  "editor.lineHeight": 1.7,
+  "scm.inputFontSize": 17,
+  "debug.console.fontSize": 17,
+  "markdown.preview.fontSize": 17,
+  "terminal.integrated.fontSize": 16,
+  "editor.fontFamily": "'Hasklug Nerd Font','Iosevka Nerd Font','Source Code Pro',Consolas,'Source Code Pro','Fantasque Sans Mono'",
+  "editor.fontLigatures": true,
+  "editor.minimap.enabled": false,
+  "workbench.editor.enablePreview": false,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorStyle": "line",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.cursorBlinking": "expand",
+  "editor.stickyScroll.enabled": true,
+  "database-client.autoSync": true,
+  "workbench.tree.indent": 20,
+  "workbench.tree.renderIndentGuides": "always",
+  "workbench.colorCustomizations": {
+    "tree.indentGuidesStroke": "#52545a00"
+  },
+  /** ------------ Additional Configurations ------------ **/
+  "vscode_custom_css.imports": [
+    "file:///D:/custom_vscode/style.css",
+    "file:///D:/custom_vscode/script.js"
+  ],
+  "extensions.ignoreRecommendations": true,
+  "editor.tabSize": 2 /* Sets indentation size to 2 spaces globally */,
+  "editor.insertSpaces": true /* Uses spaces instead of tabs for indentation globally */,
+  "editor.formatOnSave": true /* Formats code automatically on save globally */,
+  "editor.formatOnType": true /* Formats code automatically while typing globally */,
+  "editor.rulers": [80] /* Draws a guideline at 80 characters */,
+  "editor.guides.indentation": true,
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
