@@ -8,7 +8,48 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
+# ZSH_THEME="intheloop"
+# ZSH_THEME="refined"
+# ZSH_THEME="nicoulaj"
+ZSH_THEME="spaceship"
+
+# Spaceship settings
+SPACESHIP_PROMPT_ASYNC=true
+
+# Minimal spaceship sections for performance
+SPACESHIP_PROMPT_ADD_NEWLINE=false        # Tidak menambah baris kosong
+SPACESHIP_PROMPT_SEPARATE_LINE=true      # Prompt dalam satu baris
+
+# Menampilkan nama pengguna
+SPACESHIP_USER_SHOW=always
+
+# Directory segment
+SPACESHIP_DIR_PREFIX="󰝰 "
+SPACESHIP_DIR_SHOW=always
+SPACESHIP_DIR_TRUNC=1
+SPACESHIP_DIR_TRUNC_REPO=1
+
+# Git segment
+SPACESHIP_GIT_SHOW=always
+SPACESHIP_GIT_PREFIX=" "
+SPACESHIP_GIT_SYMBOL=""
+SPACESHIP_GIT_STATUS_SHOW=false
+
+# Prompt symbol
+SPACESHIP_CHAR_SYMBOL="❯"
+SPACESHIP_CHAR_SUFFIX=" "
+SPACESHIP_CHAR_COLOR_SUCCESS="green"
+SPACESHIP_CHAR_COLOR_FAILURE="red"
+
+SPACESHIP_PROMPT_ORDER=(
+  user
+  dir
+  git
+  line_sep
+  char
+)
+
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -70,6 +111,12 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+
+# Autosuggest settings
+# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#663399,standout"
+# ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
+# ZSH_AUTOSUGGEST_USE_ASYNC=1
+
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
@@ -119,3 +166,13 @@ alias lta3="eza -lTag --level=3 --icons"
 alias ci=code-insiders
 alias cls=clear
 alias python=python3
+
+export PATH=/home/pcode/nvim/bin:$PATH
+export PATH=$PATH:/usr/local/go/bin
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+. "$HOME/.cargo/env"
+export PATH=$HOME/.local/bin:$PATH
