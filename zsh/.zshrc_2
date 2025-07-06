@@ -1,0 +1,203 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time Oh My Zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+# ZSH_THEME="robbyrussell"
+# ZSH_THEME="intheloop"
+# ZSH_THEME="refined"
+# ZSH_THEME="nicoulaj"
+ZSH_THEME="spaceship"
+
+# Spaceship settings
+SPACESHIP_PROMPT_ASYNC=true
+
+# Minimal spaceship sections for performance
+SPACESHIP_PROMPT_ADD_NEWLINE=false        # Tidak menambah baris kosong
+SPACESHIP_PROMPT_SEPARATE_LINE=true      # Prompt dalam satu baris
+
+# Menampilkan nama pengguna
+SPACESHIP_USER_SHOW=always
+
+# Directory segment
+SPACESHIP_DIR_PREFIX="󰝰 "
+SPACESHIP_DIR_SHOW=always
+SPACESHIP_DIR_TRUNC=1
+SPACESHIP_DIR_TRUNC_REPO=1
+
+# Git segment
+SPACESHIP_GIT_SHOW=always
+SPACESHIP_GIT_PREFIX=" "
+SPACESHIP_GIT_SYMBOL=""
+SPACESHIP_GIT_STATUS_SHOW=false
+
+# Prompt symbol
+SPACESHIP_CHAR_SYMBOL="❯"
+SPACESHIP_CHAR_SUFFIX=" "
+SPACESHIP_CHAR_COLOR_SUCCESS="green"
+SPACESHIP_CHAR_COLOR_FAILURE="red"
+
+SPACESHIP_PROMPT_ORDER=(
+  user
+  dir
+  git
+  line_sep
+  char
+)
+
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+
+# Autosuggest settings
+# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#663399,standout"
+# ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
+# ZSH_AUTOSUGGEST_USE_ASYNC=1
+
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='nvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch $(uname -m)"
+
+# Set personal aliases, overriding those provided by Oh My Zsh libs,
+# plugins, and themes. Aliases can be placed here, though Oh My Zsh
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+alias l="eza --icons"
+alias ls="eza --icons"
+alias ll="eza -lg --icons"
+alias la="eza -lag --icons"
+alias lt="eza -lTg --icons"
+alias lt1="eza -lTg --level=1 --icons"
+alias lt2="eza -lTg --level=2 --icons"
+alias lt3="eza -lTg --level=3 --icons"
+alias lta="eza -lTag --icons"
+alias lta1="eza -lTag --level=1 --icons"
+alias lta2="eza -lTag --level=2 --icons"
+alias lta3="eza -lTag --level=3 --icons"
+
+alias ci=code-insiders
+alias cls=clear
+alias python=python3
+
+export PATH=/home/pcode/nvim/bin:$PATH
+export PATH=$PATH:/usr/local/go/bin
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+. "$HOME/.cargo/env"
+export PATH=$HOME/.local/bin:$PATH
+alias BROWSER="/mnt/c/Program\ Files\ \(x86\)/Microsoft/Edge/Application/msedge.exe"
+# Function to open files or URLs in Chrome
+chrome() {
+  if [ -e "$1" ]; then
+    local file_path
+    file_path=$(wslpath -w "$1")
+    "/mnt/c/Program Files/Google/Chrome/Application/chrome.exe" "$file_path"
+  else
+    "/mnt/c/Program Files/Google/Chrome/Application/chrome.exe" "$1"
+  fi
+}
+
+# Function to open files or URLs in Firefox
+firefox() {
+  if [ -e "$1" ]; then
+    local file_path
+    file_path=$(wslpath -w "$1")
+    "/mnt/c/Program Files/Mozilla Firefox/firefox.exe" "$file_path"
+  else
+    "/mnt/c/Program Files/Mozilla Firefox/firefox.exe" "$1"
+  fi
+}
+
+export GEMINI_API_KEY=""
+export ANTHROPIC_API_KEY=""
