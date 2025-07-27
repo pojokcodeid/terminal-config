@@ -1,0 +1,58 @@
+[
+    {
+        "key": "ctrl+alt+a",
+        "command": "workbench.action.toggleActivityBarVisibility"
+    },
+    {
+        "key": "ctrl+b",
+        "command": "workbench.action.toggleSidebarVisibility",
+    },
+    {
+        "key": "ctrl+alt+1",
+        "command": "workbench.view.explorer"
+    },
+    {
+        "key": "ctrl+alt+2",
+        "command": "workbench.action.terminal.focus"
+    },
+    {
+        "key": "ctrl+alt+3",
+        "command": "workbench.action.focusActiveEditorGroup"
+    },
+    {
+        "key": "ctrl+alt+=",
+        "command": "workbench.action.increaseViewSize"
+    },
+    {
+        "key": "ctrl+alt+-",
+        "command": "workbench.action.decreaseViewSize"
+    },
+    {
+        "key": "ctrl+alt+right",
+        "command": "workbench.action.decreaseViewWidth",
+    },
+    {
+        "key": "ctrl+alt+left",
+        "command": "workbench.action.increaseViewWidth",
+    },
+    {
+        "key": "ctrl+alt+down",
+        "command": "workbench.action.increaseViewHeight",
+    },
+    {
+        "key": "ctrl+alt+up",
+        "command": "workbench.action.decreaseViewHeight",
+    },
+    {
+        "key": "ctrl+alt+shift+t",
+        "command": "extension.multiCommand.execute",
+        "args": {
+            "sequence": [
+                "workbench.action.terminal.focus",
+                "workbench.action.terminal.moveIntoNewWindow",
+                "workbench.action.enableCompactAuxiliaryWindow",
+                "workbench.action.enableWindowAlwaysOnTop",
+            ]
+        }
+    },
+]
