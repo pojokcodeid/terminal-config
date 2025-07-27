@@ -1,0 +1,425 @@
+{
+  "workbench.iconTheme": "pcode-icon-theme-dark",
+  "window.commandCenter": false,
+  "explorer.autoReveal": true,
+  "editor.lineNumbers": "relative",
+  "window.zoomLevel": 1,
+  "editor.fontSize": 17,
+  "editor.lineHeight": 1.7,
+  "scm.inputFontSize": 17,
+  "debug.console.fontSize": 17,
+  "markdown.preview.fontSize": 17,
+  "terminal.integrated.fontSize": 16,
+  "editor.fontFamily": "'Hasklug Nerd Font','Maple Mono Normal','Iosevka Nerd Font','Source Code Pro',Consolas,'Source Code Pro','Fantasque Sans Mono'",
+  "editor.fontLigatures": true,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorStyle": "line",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.cursorBlinking": "expand",
+  "workbench.tree.indent": 20,
+  "workbench.tree.renderIndentGuides": "always",
+  /** ------------ Additional Configurations ------------ **/
+  "vscode_custom_css.imports": [
+    "file:///D:/custom_vscode/style.css",
+    "file:///D:/custom_vscode/script.js"
+  ],
+  "extensions.ignoreRecommendations": true,
+  "editor.tabSize": 4 /* Sets indentation size to 2 spaces globally */,
+  "editor.insertSpaces": true /* Formats code automatically on save globally */,
+  "editor.formatOnType": true /* Formats code automatically while typing globally */,
+  "editor.rulers": [
+    80
+  ] /* Draws a guideline at 80 characters */,
+  "editor.guides.indentation": true,
+  "workbench.startupEditor": "none",
+  "terminal.integrated.allowChords": false,
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": "on",
+    "strings": "off"
+  },
+  "auto-close-tag.excludedTags": [
+    "area",
+    "base",
+    "br",
+    "col",
+    "command",
+    "embed",
+    "hr",
+    "img",
+    "input",
+    "keygen",
+    "link",
+    "meta",
+    "param",
+    "source",
+    "track",
+    "wbr",
+    "cfabort",
+    "cfapplication",
+    "cfargument",
+    "cfassociate",
+    "cfbreak",
+    "cfchartdata",
+    "cfcollection",
+    "cfcontent",
+    "cfcontinue",
+    "cfcookie",
+    "cfdirectory",
+    "cfdump",
+    "cfelse",
+    "cfelseif",
+    "cferror",
+    "cfexecute",
+    "cfexit",
+    "cffile",
+    "cfflush",
+    "cfheader",
+    "cfhttpparam",
+    "cfimage",
+    "cfimport",
+    "cfinclude",
+    "cfindex",
+    "cfinput",
+    "cfinvokeargument",
+    "cflocation",
+    "cflog",
+    "cfloginuser",
+    "cflogout",
+    "cfmailparam",
+    "cfobject",
+    "cfobjectcache",
+    "cfparam",
+    "cfpop",
+    "cfprocessingdirective",
+    "cfprocparam",
+    "cfprocresult",
+    "cfproperty",
+    "cfqueryparam",
+    "cfregistry",
+    "cfreportparam",
+    "cfrethrow",
+    "cfreturn",
+    "cfschedule",
+    "cfspreadsheet",
+    "cfsearch",
+    "cfset",
+    "cfsetting",
+    "cfthrow",
+    "cfwddx"
+  ],
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  "git.autofetch": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "emmet.includeLanguages": {
+    "cfml": "html"
+  },
+  "files.associations": {
+    "*.sfc": "cfml"
+  },
+  "javascript.suggest.autoImports": true,
+  "javascript.preferences.importModuleSpecifierEnding": "js",
+  "editor.formatOnSave": true,
+  "codeium.enableConfig": {
+    "*": true,
+    "cfml": true,
+    "go.mod": true
+  },
+  "workbench.editor.empty.hint": "hidden",
+  "workbench.productIconTheme": "fluenticon",
+  //"workbench.layoutControl.enabled": false,
+  "editor.minimap.enabled": false,
+  "workbench.colorTheme": "Atom One Dark",
+  "workbench.editorAssociations": {
+    "*.xls": "default"
+  },
+  "hediet.vscode-drawio.resizeImages": null,
+  "workbench.activityBar.location": "top",
+  // start neovim config
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "vscode-neovim.neovimExecutablePaths.win32": "D:\\Neovim\\bin\\nvim.exe",
+  "vscode-neovim.neovimInitVimPaths.win32": "C:\\Users\\Asep\\AppData\\Local\\nvim\\init.lua",
+  "whichkey.delay": 0,
+  "whichkey.sortOrder": "alphabetically",
+  "whichkey.bindings": [
+    {
+      "key": ";",
+      "name": "commands",
+      "type": "command",
+      "command": "workbench.action.showCommands"
+    },
+    {
+      "key": "c",
+      "name": "Chat with AI",
+      "type": "command",
+      "command": "codeium.openChatView"
+    },
+    {
+      "key": "k",
+      "name": "Close active editor",
+      "type": "command",
+      "command": "workbench.action.closeActiveEditor"
+    },
+    {
+      "key": "q",
+      "name": "Kill Terminal",
+      "type": "command",
+      "command": "workbench.action.terminal.kill"
+    },
+    {
+      "key": "t",
+      "name": "Open Terminal",
+      "type": "command",
+      "command": "workbench.action.terminal.focus"
+    },
+    {
+      "key": "T",
+      "name": "Open Float Terminal",
+      "type": "command",
+      "command": "multiCommand.folatTerminal"
+    },
+    {
+      "key": "b",
+      "name": "+ Buffers/Editors...",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "b",
+          "name": "Show all buffers/editors",
+          "type": "command",
+          "command": "workbench.action.showAllEditors"
+        },
+        {
+          "key": "m",
+          "name": "Close other editors",
+          "type": "command",
+          "command": "workbench.action.closeOtherEditors"
+        },
+        {
+          "key": "u",
+          "name": "Reopen closed editor",
+          "type": "command",
+          "command": "workbench.action.reopenClosedEditor"
+        },
+        {
+          "key": "y",
+          "name": "Copy buffer to clipboard",
+          "type": "commands",
+          "commands": [
+            "editor.action.selectAll",
+            "editor.action.clipboardCopyAction",
+            "cancelSelection"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "g",
+      "name": "Toggle Git",
+      "type": "command",
+      "command": "workbench.view.scm"
+    },
+    {
+      "key": "d",
+      "name": "Toggle Debug",
+      "type": "command",
+      "command": "workbench.view.debug"
+    },
+    {
+      "key": "x",
+      "name": "Toggle Extensions",
+      "type": "command",
+      "command": "workbench.view.extensions"
+    },
+    {
+      "key": "e",
+      "name": "Open Exploler",
+      "type": "command",
+      "command": "workbench.view.explorer",
+      "when": "viewContainer.workbench.view.explorer.enabled"
+    },
+    {
+      "key": "w",
+      "name": "Toggle Sidebar",
+      "type": "command",
+      "command": "workbench.action.toggleSidebarVisibility",
+      "when": "viewContainer.workbench.view.sidebar.enabled"
+    },
+    {
+      "key": "a",
+      "name": "ActivityBar Toggle",
+      "type": "command",
+      "command": "workbench.action.toggleActivityBarVisibility"
+    },
+    {
+      "key": "f",
+      "name": "+ Find & Replace...",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "f",
+          "name": "File",
+          "type": "command",
+          "command": "actions.find",
+          "when": "editorFocus || editorIsOpen"
+        },
+        {
+          "key": "F",
+          "name": "File & Replace",
+          "type": "command",
+          "command": "editor.action.startFindReplaceAction"
+        },
+        {
+          "key": "s",
+          "name": "Symbol",
+          "type": "command",
+          "command": "editor.action.rename",
+          "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+        },
+        {
+          "key": "p",
+          "name": "Project",
+          "type": "command",
+          "command": "workbench.action.replaceInFiles"
+        }
+      ]
+    },
+    {
+      "key": "\\",
+      "name": "+ Split",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "h",
+          "name": "Split Horizontal",
+          "type": "command",
+          "command": "workbench.action.splitEditorDown"
+        },
+        {
+          "key": "v",
+          "name": "Split Vertical",
+          "type": "command",
+          "command": "workbench.action.splitEditor"
+        }
+      ]
+    },
+    {
+      "key": "s",
+      "name": "+ Search...",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "f",
+          "name": "files",
+          "type": "command",
+          "command": "workbench.action.quickOpen"
+        },
+        {
+          "key": "t",
+          "name": "text",
+          "type": "command",
+          "command": "workbench.action.findInFiles"
+        }
+      ]
+    },
+    {
+      "key": "z",
+      "name": "Toggle zen mode",
+      "type": "command",
+      "command": "workbench.action.toggleZenMode"
+    },
+    {
+      "key": "u",
+      "name": "+ UI",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "i",
+          "name": "Icon Theme",
+          "type": "command",
+          "command": "workbench.action.selectIconTheme"
+        },
+        {
+          "key": "t",
+          "name": "Color Theme",
+          "type": "command",
+          "command": "workbench.action.selectTheme"
+        }
+      ]
+    },
+    {
+      "key": "l",
+      "name": "+ Live Server",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "o",
+          "name": "Open LiveServer",
+          "type": "command",
+          "command": "extension.liveServer.goOnline",
+          "when": "editorTextFocus"
+        },
+        {
+          "key": "c",
+          "name": "Close LiveServer",
+          "type": "command",
+          "command": "extension.liveServer.goOffline",
+          "when": "editorTextFocus"
+        }
+      ]
+    }
+  ],
+  "editor.suggestSelection": "first",
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  },
+  // nvim style mode
+  "nvim-ui.nvimColorNormal": "#7aa2f7",
+  "nvim-ui.nvimColorInsert": "#9ece6a",
+  "nvim-ui.nvimColorVisual": "#bb9af7",
+  "nvim-ui.nvimColorReplace": "#000",
+  "nvim-ui.nvimColorCustomizationKeys": [
+    // "editor.lineHighlightBorder",
+    "activityBar.activeBorder",
+    "panelTitle.activeBorder",
+    "tab.activeBorderTop",
+    "editorCursor.foreground",
+    "activityBarBae.background",
+    "statusBarItem.remoteBackground"
+  ],
+  "workbench.colorCustomizations": {
+    "tree.indentGuidesStroke": "#52545a00",
+    "list.focusBackground": "#4b6eaf10",
+    "focusBorder": "#409eff80",
+    "editor.lineHighlightBackground": "#1F1F4100",
+    "editor.lineHighlightBorder": "#7aa2f760",
+    "editorCursor.foreground": "#bb9af7",
+    "activityBarBadge.background": "#7aa2f7",
+    "statusBarItem.remoteBackground": "#bb9af7",
+    "activityBarBae.background": "#bb9af7",
+    "tab.activeBorderTop": "#bb9af7",
+    "activityBar.activeBorder": "#bb9af7",
+    "panelTitle.activeBorder": "#bb9af7"
+  },
+  "window.menuBarVisibility": "compact",
+  // note install multi-command
+  "multiCommand.commands": {
+    "multiCommand.folatTerminal": {
+      "sequence": [
+        "workbench.action.terminal.focus",
+        "workbench.action.terminal.moveIntoNewWindow",
+        "workbench.action.enableCompactAuxiliaryWindow",
+        "workbench.action.enableWindowAlwaysOnTop",
+      ]
+    },
+  },
+  "workbench.layoutControl.enabled": false,
+  // end neovim config
+}
