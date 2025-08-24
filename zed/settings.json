@@ -17,7 +17,7 @@
     "theme": {
         "mode": "system",
         "light": "One Dark",
-        "dark": "One Dark"
+        "dark": "Gruvbox Dark Soft"
     },
     "terminal": {
         "shell": "system",
@@ -50,5 +50,16 @@
             "show": "never"
         },
         "hide_root": false
+    },
+    "preview_tabs": {
+        // Whether preview tabs should be enabled.
+        // Preview tabs allow you to open files in preview mode, where they close automatically
+        // when you switch to another file unless you explicitly pin them.
+        // This is useful for quickly viewing files without cluttering your workspace.
+        "enabled": false,
+        // Whether to open tabs in preview mode when selected from the file finder.
+        "enable_preview_from_file_finder": false,
+        // Whether a preview tab gets replaced when code navigation is used to navigate away from the tab.
+        "enable_preview_from_code_navigation": false
     }
 }
