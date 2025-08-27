@@ -17,7 +17,7 @@
     "theme": {
         "mode": "system",
         "light": "One Dark",
-        "dark": "Gruvbox Dark Soft"
+        "dark": "One Dark Pro"
     },
     "terminal": {
         "shell": "system",
@@ -61,5 +61,9 @@
         "enable_preview_from_file_finder": false,
         // Whether a preview tab gets replaced when code navigation is used to navigate away from the tab.
         "enable_preview_from_code_navigation": false
-    }
+    },
+    // disable dulu eslint karena belum ok confignya
+    "language_servers": ["!eslint", "..."],
+    "relative_line_numbers": true,
+    "vim_mode": false
 }
