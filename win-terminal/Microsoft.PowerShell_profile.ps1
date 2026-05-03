@@ -56,8 +56,43 @@ clear -x
 # Write-Host -ForegroundColor DarkYellow "┌─┐┌─┐ ┬┌─┐┬┌─  ┌─┐┌─┐┌┬┐┌─┐"
 # Write-Host -ForegroundColor DarkYellow "├─┘│ │ ││ │├┴┐  │  │ │ ││├┤ "
 # Write-Host -ForegroundColor DarkYellow "┴  └─┘└┘└─┘┴ ┴  └─┘└─┘─┴┘└─┘"
-                                        
+                                      
+# function prompt {
+#   $loc = $executionContext.SessionState.Path.CurrentLocation;
+
+#   $out = ""
+#   if ($loc.Provider.Name -eq "FileSystem") {
+#     $out += "$([char]27)]9;9;`"$($loc.ProviderPath)`"$([char]27)\"
+#   }
+
+#   if('c:\Users\Asep' -eq $executionContext.SessionState.Path.CurrentLocation) {
+#     $host.UI.RawUI.WindowTitle = " Pojok Code ";
+#     $out += "  PCode$(' ❯' * ($nestedPromptLevel + 1)) ";
+#     # $folder=(get-location).drive.name+":\...\PCode"
+#     # $out += " $folder$(' ❯' * ($nestedPromptLevel + 1)) ";
+#   }else{
+#     # $out += " $loc$(' ❯' * ($nestedPromptLevel + 1)) ";
+#     # $dir=($loc.path).split("\")[-2]
+#     # $folder=(get-location).drive.name+":\...\"+$( $dir + "\" + ( get-item $pwd ).Name )
+#     # $folder=$( $dir + "\" + ( get-item $pwd ).Name )
+
+#     # $folder1= ($loc.path).split("\")[-2]
+#     # $folder2= ($loc.path).split("\")[-1]
+#     # $folder=$folder1 + "\" + $folder2
+
+#     $folder= ($loc.path).split("\")[-1]
+#     $host.UI.RawUI.WindowTitle = "  " +$folder+ "  ";
+#     $out += "  $folder$(' ❯' * ($nestedPromptLevel + 1)) ";
+#   }
+  
+#    return $out
+# }
+
 function prompt {
+  # 🔥 FORCE cursor jadi blinking bar setiap prompt render
+  $esc = [char]27
+  Write-Host "$esc[5 q" -NoNewline
+
   $loc = $executionContext.SessionState.Path.CurrentLocation;
 
   $out = ""
@@ -68,24 +103,13 @@ function prompt {
   if('c:\Users\Asep' -eq $executionContext.SessionState.Path.CurrentLocation) {
     $host.UI.RawUI.WindowTitle = " Pojok Code ";
     $out += "  PCode$(' ❯' * ($nestedPromptLevel + 1)) ";
-    # $folder=(get-location).drive.name+":\...\PCode"
-    # $out += " $folder$(' ❯' * ($nestedPromptLevel + 1)) ";
-  }else{
-    # $out += " $loc$(' ❯' * ($nestedPromptLevel + 1)) ";
-    # $dir=($loc.path).split("\")[-2]
-    # $folder=(get-location).drive.name+":\...\"+$( $dir + "\" + ( get-item $pwd ).Name )
-    # $folder=$( $dir + "\" + ( get-item $pwd ).Name )
-
-    # $folder1= ($loc.path).split("\")[-2]
-    # $folder2= ($loc.path).split("\")[-1]
-    # $folder=$folder1 + "\" + $folder2
-
-    $folder= ($loc.path).split("\")[-1]
-    $host.UI.RawUI.WindowTitle = "  " +$folder+ "  ";
+  } else {
+    $folder = ($loc.path).split("\")[-1]
+    $host.UI.RawUI.WindowTitle = "  " + $folder + "  ";
     $out += "  $folder$(' ❯' * ($nestedPromptLevel + 1)) ";
   }
-  
-   return $out
+
+  return $out
 }
 
 if($host.UI.RawUI.WindowTitle -eq 'c:\WINDOWS\system32\cmd.exe'){
