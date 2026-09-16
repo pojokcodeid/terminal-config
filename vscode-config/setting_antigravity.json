@@ -63,5 +63,7 @@
   },
   "explorer.confirmDelete": false,
   "workbench.productIconTheme": "fluent-icons",
-  "workbench.colorTheme": "One Dark Pro Flat"
+  "workbench.colorTheme": "One Dark Pro Flat",
+  "antigravity.marketplaceGalleryItemURL": "https://marketplace.visualstudio.com/items",
+  "antigravity.marketplaceExtensionGalleryServiceURL": "https://marketplace.visualstudio.com/_apis/public/gallery",
 }
