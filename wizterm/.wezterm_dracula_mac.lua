@@ -170,9 +170,9 @@ config.exit_behavior = "Close"
 
 -- and window padding:
 config.window_padding = {
-	left = 5,
-	right = 5,
-	top = 27,
+	left = 10,
+	right = 10,
+	top = 35,
 	bottom = 10,
 }
 
@@ -182,7 +182,7 @@ wezterm.on("update-status", function(window, pane)
 	local num_tabs = #tabs
 
 	-- Tentukan top padding berdasarkan jumlah tab
-	local top_padding = (num_tabs > 1) and 5 or 27
+	local top_padding = (num_tabs > 1) and 5 or 40
 
 	-- Dapatkan overrides konfigurasi yang sedang aktif
 	local overrides = window:get_config_overrides() or {}
@@ -192,8 +192,8 @@ wezterm.on("update-status", function(window, pane)
 
 	if current_top ~= top_padding then
 		overrides.window_padding = {
-			left = 5,
-			right = 5,
+			left = 10,
+			right = 10,
 			top = top_padding,
 			bottom = 10,
 		}
@@ -242,7 +242,7 @@ config.font = wezterm.font({
 config.freetype_load_flags = "NO_HINTING"
 config.front_end = "Software" -- WebGpu or OpenGL or Software
 -- set font size 16
-config.font_size = 18
+config.font_size = 16
 -- add set line height
 config.line_height = 1.3
 
@@ -268,10 +268,16 @@ config.keys = {
 	{ action = wezterm.action.ResetFontSize, mods = "CTRL", key = "0" },
 	{ action = wezterm.action.ToggleFullScreen, key = "F11" },
 	-- open new tab
-	{
+	--[[ 	{
 		action = wezterm.action.SpawnCommandInNewTab({ args = { "zsh" }, cwd = current_dir }),
 		mods = "CTRL|SHIFT",
 		key = "t",
+	}, ]]
+	-- Buka tab baru mengikuti posisi direktori aktif dari pane yang sedang dibuka
+	{
+		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
+		mods = "CTRL|SHIFT",
+		key = "T",
 	},
 	-- close active tab
 	{ key = "w", mods = "CTRL|SHIFT", action = wezterm.action.CloseCurrentTab({ confirm = true }) },
