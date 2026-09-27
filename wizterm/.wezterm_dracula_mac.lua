@@ -261,11 +261,16 @@ local current_dir = os.getenv("PWD")
 config.keys = {
 	{ action = wezterm.action.ActivateCommandPalette, mods = "CTRL|SHIFT", key = "P" },
 	{ action = wezterm.action.CopyTo("Clipboard"), mods = "CTRL", key = "C" },
+	{ action = wezterm.action.CopyTo("Clipboard"), mods = "CMD", key = "C" },
 	{ action = wezterm.action.DecreaseFontSize, mods = "CTRL", key = "-" },
+	{ action = wezterm.action.DecreaseFontSize, mods = "CMD", key = "-" },
 	{ action = wezterm.action.IncreaseFontSize, mods = "CTRL", key = "=" },
+	{ action = wezterm.action.IncreaseFontSize, mods = "CMD", key = "=" },
 	{ action = wezterm.action.Nop, mods = "ALT", key = "Enter" },
 	{ action = wezterm.action.PasteFrom("Clipboard"), mods = "CTRL", key = "V" },
+	{ action = wezterm.action.PasteFrom("Clipboard"), mods = "CMD", key = "V" },
 	{ action = wezterm.action.ResetFontSize, mods = "CTRL", key = "0" },
+	{ action = wezterm.action.ResetFontSize, mods = "CMD", key = "0" },
 	{ action = wezterm.action.ToggleFullScreen, key = "F11" },
 	-- open new tab
 	--[[ 	{
