@@ -260,15 +260,15 @@ local current_dir = os.getenv("PWD")
 -- add keys mapping
 config.keys = {
 	{ action = wezterm.action.ActivateCommandPalette, mods = "CTRL|SHIFT", key = "P" },
-	{ action = wezterm.action.CopyTo("Clipboard"), mods = "CTRL", key = "C" },
-	{ action = wezterm.action.CopyTo("Clipboard"), mods = "CMD", key = "C" },
+	{ action = wezterm.action.CopyTo("Clipboard"), mods = "CTRL", key = "c" },
+	{ action = wezterm.action.CopyTo("Clipboard"), mods = "CMD", key = "c" },
 	{ action = wezterm.action.DecreaseFontSize, mods = "CTRL", key = "-" },
 	{ action = wezterm.action.DecreaseFontSize, mods = "CMD", key = "-" },
 	{ action = wezterm.action.IncreaseFontSize, mods = "CTRL", key = "=" },
 	{ action = wezterm.action.IncreaseFontSize, mods = "CMD", key = "=" },
 	{ action = wezterm.action.Nop, mods = "ALT", key = "Enter" },
-	{ action = wezterm.action.PasteFrom("Clipboard"), mods = "CTRL", key = "V" },
-	{ action = wezterm.action.PasteFrom("Clipboard"), mods = "CMD", key = "V" },
+	{ action = wezterm.action.PasteFrom("Clipboard"), mods = "CTRL", key = "v" },
+	{ action = wezterm.action.PasteFrom("Clipboard"), mods = "CMD", key = "v" },
 	{ action = wezterm.action.ResetFontSize, mods = "CTRL", key = "0" },
 	{ action = wezterm.action.ResetFontSize, mods = "CMD", key = "0" },
 	{ action = wezterm.action.ToggleFullScreen, key = "F11" },
@@ -359,7 +359,7 @@ config.keys = {
 	-- CMD+C untuk save di MAC OS
 	{ key = "c", mods = "CMD", action = act.SendKey({ key = "c", mods = "CTRL" }) },
 	-- CMD+V untuk save di MAC OS
-	{ key = "v", mods = "CMD", action = act.SendKey({ key = "v", mods = "CTRL" }) },
+	-- { key = "v", mods = "CMD", action = act.SendKey({ key = "v", mods = "CTRL" }) },
 	-- CMD+LeftArrow untuk save di MAC OS
 	{ key = "LeftArrow", mods = "CMD", action = act.SendKey({ key = "LeftArrow", mods = "CTRL" }) },
 	-- CMD+RightArrow untuk save di MAC OS
