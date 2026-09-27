@@ -234,7 +234,7 @@ config.font = wezterm.font({
 	family = "Hasklug Nerd Font",
 	-- family = "JetBrainsMono Nerd Font",
 	-- family = "SauceCodePro Nerd Font",
-	weight = "Medium", -- Normal, Medium, Bold, DemiBold
+	weight = "DemiBold", -- Regular,450, Medium, Bold, DemiBold
 	stretch = "Normal",
 	style = "Normal",
 	harfbuzz_features = { "cv29", "cv30", "ss01", "ss03", "ss06", "ss07", "ss09" },
@@ -244,7 +244,7 @@ config.front_end = "Software" -- WebGpu or OpenGL or Software
 -- set font size 16
 config.font_size = 18
 -- add set line height
--- config.line_height = 1.1
+config.line_height = 1.3
 
 config.disable_default_key_bindings = true
 config.force_reverse_video_cursor = true
