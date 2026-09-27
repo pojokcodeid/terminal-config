@@ -372,6 +372,7 @@ config.keys = {
 	{ key = "g", mods = "CMD", action = act.SendKey({ key = "g", mods = "CTRL" }) },
 	-- CMD+x untuk save di MAC OS
 	{ key = "x", mods = "CMD", action = act.SendKey({ key = "x", mods = "CTRL" }) },
+	{ key = "/", mods = "CMD", action = act.SendString("\x1f") },
 	{
 		key = "x",
 		mods = "CTRL",
