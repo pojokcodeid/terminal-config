@@ -349,6 +349,18 @@ config.keys = {
 	{ key = "c", mods = "CMD", action = act.SendKey({ key = "c", mods = "CTRL" }) },
 	-- CMD+V untuk save di MAC OS
 	{ key = "v", mods = "CMD", action = act.SendKey({ key = "v", mods = "CTRL" }) },
+	-- CMD+LeftArrow untuk save di MAC OS
+	{ key = "LeftArrow", mods = "CMD", action = act.SendKey({ key = "LeftArrow", mods = "CTRL" }) },
+	-- CMD+RightArrow untuk save di MAC OS
+	{ key = "RightArrow", mods = "CMD", action = act.SendKey({ key = "RightArrow", mods = "CTRL" }) },
+	-- CMD+UpArrow untuk save di MAC OS
+	{ key = "UpArrow", mods = "CMD", action = act.SendKey({ key = "UpArrow", mods = "CTRL" }) },
+	-- CMD+DownArrow untuk save di MAC OS
+	{ key = "DownArrow", mods = "CMD", action = act.SendKey({ key = "DownArrow", mods = "CTRL" }) },
+	-- CMD+G untuk save di MAC OS
+	{ key = "g", mods = "CMD", action = act.SendKey({ key = "g", mods = "CTRL" }) },
+	-- CMD+x untuk save di MAC OS
+	{ key = "x", mods = "CMD", action = act.SendKey({ key = "x", mods = "CTRL" }) },
 	{
 		key = "x",
 		mods = "CTRL",
