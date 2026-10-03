@@ -1,3 +1,132 @@
+-- buat file di home directory
+-- contoh
+-- C:\Users\PCode\.wezterm.lua
+-- compu code dibawah ini :
+-- Pull in the wezterm API
+local wezterm = require("wezterm")
+local act = wezterm.action
+
+-- config for on load fullscreen
+-- wezterm.on("gui-startup", function(cmd)
+-- 	local _, _, window = wezterm.mux.spawn_window(cmd or {})
+-- 	window:gui_window():toggle_fullscreen()
+-- end)
+
+-- This will hold the configuration.
+local config = wezterm.config_builder()
+
+-- change config now
+-- config.default_domain = "WSL:Debian"
+
+-- This is where you actually apply your config choices
+-- For example, changing the color scheme:
+-- local scheme = "tokyonight_night"
+-- local scheme = "tokyonight_storm"
+-- local scheme = "nightfox"
+local scheme = "Dracula (Official)"
+-- local scheme = "JetBrains Darcula"
+-- local scheme = "OneDark (base16)"
+-- local scheme = "GitHub Dark"
+-- local scheme = "One Dark (Gogh)"
+config.color_scheme = scheme
+
+-- Obtain the definition of that color scheme
+local scheme_def = wezterm.color.get_builtin_schemes()[scheme]
+-- overide background color
+-- local bg_custom = "#2e2e2e"
+-- local bg_custom = "#24283B" -- custom for tokyonight storm
+-- local bg_custom = "#282c34" -- custom for onedark pro
+-- local bg_custom = "#22272e" -- custom for github
+-- local bg_custom = "#1e2126" -- custom for eva dark
+-- local bg_custom = "#1e222a" -- custom for onedark pro
+-- local bg_custom = "#2b2b2b" -- custom for dracula jetbrains
+-- local bg_custom = "#282a36" -- custom for dracula
+local bg_custom = "#363636" -- custom for dracula
+-- local bg_custom = "#1a1b26" -- custom for tokyonight
+-- local bg_custom = "#192330" -- custom for nightfox
+-- local bg_color = scheme_def.background
+-- local bg_color = bg_custom
+-- local bg_color = "#2b2b2b" -- cutem for dracula jetbrains
+-- local bg_color = "#282C34" -- cutem for eva dark
+-- local bg_color = "#282a36"
+local bg_color = "#282A36" -- dracula
+-- local bg_color = "#202020"
+-- local fg_inactive = "#565f89"
+local fg_inactive = "#999999"
+-- local bg_newtab = "#24283b"
+local bg_newtab = bg_custom
+-- local bg_inactive_hover = "#24283b"
+local bg_inactive_hover = bg_color
+config.colors = {
+	-- overide background color
+	background = bg_color,
+	-- overide tab background color
+	tab_bar = {
+		active_tab = {
+			bg_color = bg_color,
+			fg_color = scheme_def.foreground,
+		},
+		-- overide tab inactive background color
+		inactive_tab = {
+			bg_color = bg_custom,
+			fg_color = fg_inactive,
+		},
+		inactive_tab_edge = bg_custom,
+		-- add custom new tab button background
+		new_tab = {
+			bg_color = bg_newtab,
+			fg_color = scheme_def.foreground,
+		},
+		-- add custom tab hover background
+		inactive_tab_hover = {
+			bg_color = bg_inactive_hover,
+			fg_color = scheme_def.foreground,
+		},
+		-- add custom new tab hover background
+		new_tab_hover = {
+			bg_color = bg_inactive_hover,
+			fg_color = scheme_def.foreground,
+		},
+	},
+}
+-- set config window frame title background
+config.window_frame = {
+	active_titlebar_bg = bg_custom,
+	inactive_titlebar_bg = bg_custom,
+}
+
+-- get current folder
+
+-- Fungsi pembantu untuk mengambil nama direktori terakhir dari path
+local function get_current_working_dir(tab)
+	local current_dir = tab.active_pane.current_working_dir
+	if current_dir then
+		local path = current_dir.file_path
+		-- Hapus trailing slash jika ada (misal: /home/user/folder/ -> /home/user/folder)
+		path = path:gsub("[/\\]$", "")
+		-- Ambil komponen terakhir dari path
+		local folder_name = path:match("([^/^\\]+)$")
+		if folder_name and #folder_name > 0 then
+			return folder_name
+		end
+	end
+	return "Pojok Code"
+end
+
+-- Fungsi pembantu untuk membuat teks memiliki lebar minimum (padding spasi kanan-kiri)
+local function pad_text(text, min_width)
+	local len = #text
+	if len >= min_width then
+		return text
+	end
+	local total_padding = min_width - len
+	local left_padding = math.floor(total_padding / 2)
+	local right_padding = total_padding - left_padding
+	return string.rep(" ", left_padding) .. text .. string.rep(" ", right_padding)
+end
+
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+	local title = get_current_working_dir(tab)
 	local MIN_WIDTH = 20
 	if title == "asepkomarudin" then
 		title = "Pojok Code"
@@ -82,7 +211,7 @@ config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 
 -- add opacity
 config.window_background_opacity = 1
--- config.win32_system_backdrop = "Mica" -- Acrylic, Mica, or Tabbed
+-- config.win32_system_backdrop = "Acrylic" -- Acrylic, Mica, or Tabbed
 
 -- set window title text
 wezterm.on("format-window-title", function(event)
@@ -229,6 +358,10 @@ config.keys = {
 	{ key = "a", mods = "CMD", action = act.SendKey({ key = "a", mods = "CTRL" }) },
 	-- CMD+C untuk save di MAC OS
 	{ key = "c", mods = "CMD", action = act.SendKey({ key = "c", mods = "CTRL" }) },
+	-- OPT+Up untuk save di MAC OS
+	{ key = "UpArrow", mods = "OPT", action = act.SendKey({ key = "UpArrow", mods = "ALT" }) },
+	-- OPT+Down untuk save di MAC OS
+	{ key = "DownArrow", mods = "OPT", action = act.SendKey({ key = "DownArrow", mods = "ALT" }) },
 	-- CMD+V untuk save di MAC OS
 	-- { key = "v", mods = "CMD", action = act.SendKey({ key = "v", mods = "CTRL" }) },
 	-- CMD+LeftArrow untuk save di MAC OS
