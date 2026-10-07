@@ -215,13 +215,14 @@ config.show_tab_index_in_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
 
 ----------------------------------------------------------------
--- RESTORE LAST WINDOW POSITION & SIZE
+-- RESTORE LAST WINDOW POSITION, SIZE & FULLSCREEN
 ----------------------------------------------------------------
 -- PENTING: file state HARUS di luar folder yang berisi .wezterm.lua.
 -- WezTerm memantau folder config; kalau ada file berubah di folder yang sama
 -- (misal ~/), config otomatis di-reload terus-menerus.
 local state_dir = wezterm.home_dir .. "/.local/state/wezterm"
 local state_file = state_dir .. "/window-state.json"
+local geo_file = state_dir .. "/position.txt"
 pcall(wezterm.run_child_process, { "mkdir", "-p", state_dir })
 
 local function read_state()
@@ -242,32 +243,38 @@ local function read_state()
 end
 
 local last_saved = ""
-local restore_guard_until = 0 -- selama restore berlangsung, jangan simpan state
-
--- Skala koordinat posisi saat restore. osascript memberi satuan "points".
--- Jika setelah restart window muncul di posisi yang salah (misal setengah
--- jaraknya dari pojok kiri atas), ubah jadi 2 (atau 0.5 jika kebalikannya).
-local POSITION_SCALE = 1
-
--- Posisi window dibaca lewat osascript di background (tidak memblokir UI).
--- Hasilnya ditulis ke file, lalu dibaca pada polling berikutnya.
-local pos_file = state_dir .. "/position.txt"
+local restore_guard_until = 0 -- selama restore/transisi fullscreen, jangan simpan state
 local last_poll = 0
-local cur_x, cur_y
+local cur = nil -- geometri window terakhir dari osascript: { x, y, w, h } (points)
+local last_win = nil -- geometri terakhir saat TIDAK fullscreen
+local last_full = nil
+local pending_fullscreen = false
+local fullscreen_at = 0
 
-local function poll_position()
-	-- baca hasil polling terakhir (murah, dilakukan di setiap panggilan)
-	local f = io.open(pos_file, "r")
+local saved = read_state()
+if saved then
+	-- ukuran awal (kolom/baris) dari state terakhir
+	if saved.cols and saved.rows then
+		config.initial_cols = saved.cols
+		config.initial_rows = saved.rows
+	end
+	-- jaga geometri non-fullscreen terakhir agar tidak hilang saat restore fullscreen
+	last_win = { x = saved.x, y = saved.y, w = saved.w, h = saved.h, cols = saved.cols, rows = saved.rows }
+end
+
+-- Posisi & ukuran window dibaca lewat osascript di background (tidak memblokir UI).
+-- Hasilnya ditulis ke file, lalu dibaca pada panggilan berikutnya.
+local function poll_geometry()
+	local f = io.open(geo_file, "r")
 	if f then
 		local c = f:read("*a")
 		f:close()
-		local x, y = c:match("(-?%d+)%s*,%s*(-?%d+)")
-		if x and y then
-			cur_x, cur_y = tonumber(x) * POSITION_SCALE, tonumber(y) * POSITION_SCALE
+		local x, y, w, h = c:match("(-?%d+)%s*,%s*(-?%d+)%s*,%s*(%d+)%s*,%s*(%d+)")
+		if x then
+			cur = { x = tonumber(x), y = tonumber(y), w = tonumber(w), h = tonumber(h) }
 		end
 	end
 
-	-- jalankan polling baru tiap 2 detik (butuh izin Accessibility untuk WezTerm)
 	local now = os.time()
 	if now - last_poll < 2 then
 		return
@@ -276,8 +283,8 @@ local function poll_position()
 	wezterm.background_child_process({
 		"sh",
 		"-c",
-		"osascript -e 'tell application \"System Events\" to tell process \"wezterm-gui\" to get position of window 1' > '"
-			.. pos_file
+		"osascript -e 'tell application \"System Events\" to tell process \"wezterm-gui\" to get {position of window 1, size of window 1}' > '"
+			.. geo_file
 			.. "' 2>/dev/null",
 	})
 end
@@ -287,23 +294,37 @@ local function save_state(window, pane)
 	if os.time() < restore_guard_until then
 		return
 	end
-	local dims = window:get_dimensions()
-	if dims.is_full_screen then
+
+	local full = window:get_dimensions().is_full_screen
+	poll_geometry()
+
+	-- saat masuk/keluar fullscreen, hasil osascript sempat basi: tunggu sebentar
+	if last_full ~= nil and full ~= last_full then
+		last_full = full
+		restore_guard_until = os.time() + 3
 		return
 	end
-
-	-- WezTerm tidak punya API untuk membaca posisi window, jadi posisi
-	-- diambil lewat osascript (lihat poll_position di atas).
-	poll_position()
+	last_full = full
 
 	local pdims = pane:get_dimensions()
-	local encoded = wezterm.json_encode({
-		x = cur_x,
-		y = cur_y,
-		cols = pdims.cols,
-		rows = pdims.viewport_rows,
-	})
+	if not full and cur then
+		last_win = { x = cur.x, y = cur.y, w = cur.w, h = cur.h, cols = pdims.cols, rows = pdims.viewport_rows }
+	end
 
+	local st = {}
+	if last_win then
+		for k, v in pairs(last_win) do
+			st[k] = v
+		end
+	end
+	if full then
+		st.fullscreen = true
+		if cur then
+			st.fx, st.fy = cur.x, cur.y
+		end
+	end
+
+	local encoded = wezterm.json_encode(st)
 	if encoded == last_saved then
 		return
 	end
@@ -318,48 +339,48 @@ local function save_state(window, pane)
 	end
 end
 
--- ukuran awal (kolom/baris) dari state terakhir
-local saved = read_state()
-if saved and saved.cols and saved.rows then
-	config.initial_cols = saved.cols
-	config.initial_rows = saved.rows
-end
-
--- posisi awal: spawn_window(position=...) diabaikan macOS, jadi window
--- dipindahkan setelah dibuat lewat osascript (System Events).
+-- Restore: spawn_window lalu pindahkan/resize lewat osascript, kemudian
+-- fullscreen (di update-status) jika terakhir fullscreen.
 wezterm.on("gui-startup", function(cmd)
 	local args = cmd or {}
 	local s = read_state()
 	local restore = nil
-	if s and s.x and s.y then
-		-- pastikan posisi tersimpan masih berada di dalam area layar yang
-		-- terhubung (mis. monitor 2 sudah dicabut -> pakai posisi default)
-		local on_screen = true
-		local ok, screens = pcall(function()
-			return wezterm.gui.screens()
-		end)
-		if ok and screens and screens.virtual_width then
-			local min_x = screens.origin_x or 0
-			local min_y = screens.origin_y or 0
-			local max_x = min_x + screens.virtual_width
-			local max_y = min_y + screens.virtual_height
-			on_screen = s.x >= min_x - 50 and s.x < max_x - 100 and s.y >= min_y - 50 and s.y < max_y - 100
-		end
-		if on_screen then
-			restore = { x = s.x, y = s.y }
-			args.position = { x = s.x, y = s.y, origin = "ScreenCoordinateSystem" }
 
-			-- Cari monitor yang berisi titik tersimpan, lalu pakai koordinat
-			-- relatif ke monitor itu (origin = Named). Ini lebih andal di macOS
-			-- daripada ScreenCoordinateSystem dan membuat window langsung muncul
-			-- di monitor yang benar tanpa "lompat".
-			if ok and screens and screens.by_name then
-				for name, v in pairs(screens.by_name) do
-					local sc = (v.scale and v.scale > 0) and v.scale or 1
-					local w, h = v.width / sc, v.height / sc -- ukuran dalam points
-					if s.x >= v.x and s.x < v.x + w and s.y >= v.y and s.y < v.y + h then
-						args.position = { x = s.x - v.x, y = s.y - v.y, origin = { Named = name } }
-						break
+	if s then
+		local tx, ty = s.x, s.y
+		if s.fullscreen and s.fx and s.fy then
+			-- titik di dalam monitor tempat fullscreen terakhir
+			tx, ty = s.fx + 40, s.fy + 40
+		end
+
+		if tx and ty then
+			-- pastikan posisi masih di dalam area layar yang terhubung
+			-- (mis. monitor 2 dicabut -> pakai posisi default)
+			local on_screen = true
+			local ok, screens = pcall(function()
+				return wezterm.gui.screens()
+			end)
+			if ok and screens and screens.virtual_width then
+				local min_x = screens.origin_x or 0
+				local min_y = screens.origin_y or 0
+				local max_x = min_x + screens.virtual_width
+				local max_y = min_y + screens.virtual_height
+				on_screen = tx >= min_x - 50 and tx < max_x - 100 and ty >= min_y - 50 and ty < max_y - 100
+			end
+
+			if on_screen then
+				restore = { x = tx, y = ty, w = s.w, h = s.h }
+				args.position = { x = tx, y = ty, origin = "ScreenCoordinateSystem" }
+
+				-- koordinat relatif ke monitor yang berisi titik tsb (origin = Named)
+				if ok and screens and screens.by_name then
+					for name, v in pairs(screens.by_name) do
+						local sc = (v.scale and v.scale > 0) and v.scale or 1
+						local w, h = v.width / sc, v.height / sc -- ukuran dalam points
+						if tx >= v.x and tx < v.x + w and ty >= v.y and ty < v.y + h then
+							args.position = { x = tx - v.x, y = ty - v.y, origin = { Named = name } }
+							break
+						end
 					end
 				end
 			end
@@ -369,18 +390,34 @@ wezterm.on("gui-startup", function(cmd)
 	wezterm.mux.spawn_window(args)
 
 	if restore then
-		-- jangan timpa file state dengan posisi sementara saat window dipindahkan
-		restore_guard_until = os.time() + 6
-		-- tunggu window muncul, lalu pindahkan (coba 2x agar lebih andal)
-		local script = string.format(
-			'tell application "System Events" to tell process "wezterm-gui" to set position of window 1 to {%d, %d}',
-			restore.x,
-			restore.y
-		)
+		restore_guard_until = os.time() + 7
+		if s.fullscreen then
+			pending_fullscreen = true
+			fullscreen_at = os.time() + 2
+		end
+
+		-- pindahkan lalu set ukuran (dalam points) agar sama persis dengan terakhir,
+		-- walau resolusi/DPI monitor berbeda
+		local lines = {
+			'tell application "System Events"',
+			'tell process "wezterm-gui"',
+			string.format("set position of window 1 to {%d, %d}", restore.x, restore.y),
+		}
+		if restore.w and restore.h then
+			table.insert(lines, string.format("set size of window 1 to {%d, %d}", restore.w, restore.h))
+		end
+		table.insert(lines, "end tell")
+		table.insert(lines, "end tell")
+
+		local parts = {}
+		for _, l in ipairs(lines) do
+			table.insert(parts, "-e '" .. l .. "'")
+		end
+		local oscmd = "osascript " .. table.concat(parts, " ") .. " >/dev/null 2>&1"
 		wezterm.background_child_process({
 			"sh",
 			"-c",
-			"sleep 0.15; osascript -e '" .. script .. "' >/dev/null 2>&1; sleep 0.5; osascript -e '" .. script .. "' >/dev/null 2>&1",
+			"sleep 0.15; " .. oscmd .. "; sleep 0.5; " .. oscmd,
 		})
 	end
 end)
@@ -407,6 +444,14 @@ config.window_padding = {
 -- Perbarui top padding secara dinamis berdasarkan jumlah tab
 -- + simpan posisi/ukuran window terakhir
 wezterm.on("update-status", function(window, pane)
+	-- kembalikan ke fullscreen jika terakhir fullscreen (setelah window dipindahkan)
+	if pending_fullscreen and os.time() >= fullscreen_at then
+		pending_fullscreen = false
+		if not window:get_dimensions().is_full_screen then
+			window:toggle_fullscreen()
+		end
+	end
+
 	save_state(window, pane)
 
 	local num_tabs = #window:mux_window():tabs()
