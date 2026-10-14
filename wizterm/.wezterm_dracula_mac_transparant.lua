@@ -15,13 +15,23 @@ local config = wezterm.config_builder()
 -- local scheme = "GitHub Dark"
 local scheme = "Dracula (Official)"
 config.color_scheme = scheme
+config.freetype_load_target = "HorizontalLcd"
+config.freetype_render_target = "HorizontalLcd"
+config.front_end = "WebGpu"
+config.max_fps = 120
+config.bold_brightens_ansi_colors = true
+config.foreground_text_hsb = {
+	hue = 1.0,
+	saturation = 1.1, -- naikkan pelan-pelan: 1.1, 1.15, 1.2
+	brightness = 1.0,
+}
 
 -- Obtain the definition of that color scheme
 local scheme_def = wezterm.color.get_builtin_schemes()[scheme]
 
 -- tingkat transparansi (dipakai window DAN tab bar supaya sama)
 -- 1.0 = solid, 0.7 = cukup transparan
-local OPACITY = 0.9
+local OPACITY = 1
 
 -- helper: "#rrggbb" + alpha -> "rgba(r, g, b, a)"
 local function rgba(hex, alpha)
@@ -726,4 +736,4 @@ config.mouse_bindings = {
 	},
 }
 
-return config 
+return config
