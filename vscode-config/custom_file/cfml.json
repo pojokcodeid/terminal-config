@@ -1,0 +1,314 @@
+{
+	"Component Header": {
+		"prefix": "componentName",
+		"body": [
+			"component displayname=\"${TM_FILENAME_BASE}\" accessors=\"true\" {",
+			"\t$0",
+			"}"
+		],
+		"description": "Membuat header komponen CFML otomatis berdasarkan nama file"
+	},
+	"Component Init": {
+		"prefix": "componentInit",
+		"body": [
+			"component displayname=\"${TM_FILENAME_BASE}\" accessors=\"true\" {",
+			"",
+			"\tfunction init() {",
+			"\t\treturn this;",
+			"\t}",
+			"",
+			"\t$0",
+			"}"
+		],
+		"description": "Membuat komponen CFML dengan fungsi init()"
+	},
+	"Function Definition": {
+		"prefix": "functionName",
+		"body": [
+			"public any function ${1:namaFunction}(${2:parameter}) {",
+			"\t_objChange(\"READ\");",
+			"\t$3",
+			"}"
+		],
+		"description": "Membuat kerangka fungsi public any CFML"
+	},
+	"Query Execute": {
+		"prefix": "queryExecute",
+		"body": [
+			"queryExecute(",
+			"\t\"",
+			"\t\tselect",
+			"\t\t\t${1:emp_id}",
+			"\t\tfrom",
+			"\t\t\t${2:teomempcompany}",
+			"\t\twhere",
+			"\t\t\tcompany_id=:${3:coid}",
+			"\t\",",
+			"\t{",
+			"\t\t${4:coid}:{value:REQUEST.SCookie.${5:coid},sqltype:\"cf_sql_integer\"}",
+			"\t},",
+			"\t{ datasource:REQUEST.SDSN }",
+			");"
+		],
+		"description": "Snippet queryExecute dengan parameter binding"
+	},
+	"Dump Log": {
+		"prefix": "dump",
+		"body": [
+			"Application.AppObj.SFUtil.SFWRITELOG(dump = {data: ${1:outData}});"
+		],
+		"description": "Debug log menggunakan SFWRITELOG"
+	},
+	"Init Upload Process": {
+		"prefix": "initUploadProcess",
+		"body": [
+			"public any function initUpload(struct argEntries) {",
+			"\t_ObjChange(\"EDIT\");",
+			"\t// code mulai dari sini",
+			"\tvar bBckGround = argEntries.keyExists(\"isbackground\") ? argEntries.isbackground : 0;",
+			"\tvar scheduledate = argEntries.keyExists(\"isbackground\") ? (",
+			"\t\targEntries.keyExists(\"scheduledate\") ? argEntries.scheduledate : now()",
+			"\t) : \"\";",
+			"\tvar blogProc = 1;",
+			"\tvar procCode = \"ROVT#REQUEST.SCookie.User.uid##dateFormat(now(), \\\"yyyymmdd\\\")##timeFormat(now(), \\\"hhmmss\\\")#\";",
+			"\tvar procFunc = \"qlid=CL_OvertimeReport.processPerData||lastFuncName\";",
+			"",
+			"\tApplication.APPOBJ.SFProcess.InitAttribute({processName: \"Overtime Report Process\", processModule: \"Attendance\"});",
+			"\tvar retData = Application.APPOBJ.SFProcess.InitProcess(",
+			"\t\tprocCode,",
+			"\t\tprocFunc,",
+			"\t\tqData,",
+			"\t\t\"\",",
+			"\t\t\"\",",
+			"\t\tbBckGround,",
+			"\t\tscheduledate,",
+			"\t\t1,",
+			"\t\t\"emp_name\"",
+			"\t);",
+			"\tretData.apidirection = \"qlid=CL_OvertimeReport.uploadProcess\";",
+			"\treturn retData;",
+			"}",
+			"",
+			"public any function lastFuncName(query theQuery) {",
+			"\ttry {",
+			"\t\t// code here",
+			"\t\treturn true;",
+			"\t} catch (e) {",
+			"\t\tApplication.AppObj.SFUtil.SFWRITELOG(dump = {exception: e});",
+			"\t\treturn false;",
+			"\t}",
+			"}",
+			"",
+			"public any function uploadProcess(struct argEntries) {",
+			"\t_ObjChange(\"EDIT\");",
+			"\tif (isDefined(\"argEntries.payload\")) {",
+			"\t\tscPassData = deserializeJSON(arguments.argEntries.payload);",
+			"\t} else if (isStruct(argEntries)) {",
+			"\t\tscPassData = argEntries;",
+			"\t} else {",
+			"\t\treturn {HSTATUS: 400, MESSAGE: \"Invalid passing form or payload\"};",
+			"\t}",
+			"",
+			"\tscPassData.maxprocess = 5;",
+			"\tvar retData = Application.APPOBJ.SFProcess.runProcess(argumentcollection = scPassData);",
+			"\tretData.apidirection = \"qlid=CL_OvertimeReport.uploadProcess\";",
+			"\treturn retData;",
+			"}",
+			"",
+			"public any function processPerData(string processCode, numeric currow, query qData) {",
+			"\ttry {",
+			"\t\t// code here",
+			"\t} catch (any e) {",
+			"\t\tLOCAL.pathlog = Application.AppObj.SFUtil.SFWRITELOG(dump = {catch: e});",
+			"\t\tLOCAL.empName = qData.emp_name[currow];",
+			"\t\tApplication.APPOBJ.SFProcess.AddFailure(",
+			"\t\t\tArguments.processcode,",
+			"\t\t\tArguments.rowData.seq_id,",
+			"\t\t\t\"Error Overtime Report For : \" & LOCAL.empName,",
+			"\t\t\t\"#LOCAL.pathlog#\"",
+			"\t\t);",
+			"\t\treturn false;",
+			"\t}",
+			"\treturn true;",
+			"}",
+			"$0"
+		],
+		"description": "Boilerplate lengkap fungsi initUpload dan proses background"
+	},
+	"Test Function": {
+		"prefix": "testFunction",
+		"body": [
+			"function test() {",
+			"\tthis._ObjChange(\"READ\");",
+			"\treturn {status: true, message: \"Message Ok !\"}",
+			"}",
+			"$0"
+		],
+		"description": "Fungsi test standar"
+	},
+	"Remark Comment": {
+		"prefix": "remark",
+		"body": [
+			"/**",
+			" * add by akn $CURRENT_YEAR$CURRENT_MONTH$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE",
+			" * $0",
+			" */"
+		],
+		"description": "Komentar remark dengan author dan timestamp otomatis"
+	},
+
+  "component": {
+		"prefix": "component",
+		"body": [
+			"component accessors=\"true\" {",
+			"\t$0",
+			"}"
+		],
+		"description": "CFScript Component definition",
+	},
+	"function": {
+		"prefix": "function",
+		"body": [
+			"${1|public,private,package,remote|} ${2|void,any,string,numeric,boolean,array,struct,query,component|} function ${3:name}($4) {",
+			"\t$0",
+			"}"
+		],
+		"description": "Function definition",
+	},
+	"property": {
+		"prefix": "property",
+		"body": [
+			"property name=\"${1:propertyName}\" type=\"${2|string,numeric,boolean,array,struct,any,date,query|}\" ${3:default=\"\"};"
+		],
+		"description": "Property declaration",
+	},
+	"init": {
+		"prefix": "init",
+		"body": [
+			"public ${1:component} function init($2) {",
+			"\t$0",
+			"\treturn this;",
+			"}"
+		],
+		"description": "Constructor init function",
+	},
+	"if": {
+		"prefix": "if",
+		"body": [
+			"if (${1:condition}) {",
+			"\t$0",
+			"}"
+		],
+		"description": "If statement",
+	},
+	"ifelse": {
+		"prefix": "ifelse",
+		"body": [
+			"if (${1:condition}) {",
+			"\t$2",
+			"} else {",
+			"\t$0",
+			"}"
+		],
+		"description": "If-Else statement",
+	},
+	"trycatch": {
+		"prefix": "trycatch",
+		"body": [
+			"try {",
+			"\t$1",
+			"} catch (${2:any} e) {",
+			"\t$0",
+			"}"
+		],
+		"description": "Try-Catch block",
+	},
+	"forin": {
+		"prefix": "forin",
+		"body": [
+			"for (var ${1:item} in ${2:collection}) {",
+			"\t$0",
+			"}"
+		],
+		"description": "For-In loop (Array/Struct/Query)",
+	},
+	"fori": {
+		"prefix": "fori",
+		"body": [
+			"for (var ${1:i} = 1; ${1:i} <= ${2:arrayLen(arr)}; ${1:i}++) {",
+			"\t$0",
+			"}"
+		],
+		"description": "Standard For loop",
+	},
+	"switch": {
+		"prefix": "switch",
+		"body": [
+			"switch (${1:expression}) {",
+			"\tcase \"${2:value}\":",
+			"\t\t$3",
+			"\t\tbreak;",
+			"\tdefault:",
+			"\t\t$0",
+			"\t\tbreak;",
+			"}"
+		],
+		"description": "Switch-Case statement",
+	},
+	"queryExecute": {
+		"prefix": "queryExecute",
+		"body": [
+			"var ${1:qResult} = queryExecute(",
+			"\t\"${2:SELECT * FROM table WHERE id = :id}\",",
+			"\t{ ${3:id} = { value = ${4:idValue}, cfsqltype = \"${5|cf_sql_integer,cf_sql_varchar,cf_sql_timestamp,cf_sql_bit|}\" } },",
+			"\t{ datasource = \"${6:dsn}\" }",
+			");"
+		],
+		"description": "queryExecute statement",		
+	},
+	"writeDump": {
+		"prefix": "dump",
+		"body": [
+			"writeDump(var=${1:var}, abort=${2|true,false|});"
+		],
+		"description": "writeDump helper",		
+	},
+	"writeOutput": {
+		"prefix": "out",
+		"body": [
+			"writeOutput($0);"
+		],
+		"description": "writeOutput helper",		
+	},
+	"param": {
+		"prefix": "param",
+		"body": [
+			"param name=\"${1:args.name}\" type=\"${2|string,numeric,boolean,array,struct,any|}\" default=\"${3:default}\";"
+		],
+		"description": "Param declaration",	
+	},
+	"comment": {
+		"prefix": "comment",
+		"body": [
+			"/**",
+			"* Date   = $CURRENT_YEAR-$CURRENT_MONTH-${CURRENT_DATE}",
+			"* Author = @AKN",
+			"* $1",
+			"*/"
+		],
+		"description": "Komentar"
+	},
+	"queryExecute2": {
+		"prefix": "queryExecute2",
+		"body": [
+			"queryExecute(",
+			"\t\"",
+			"\t\t${1:query}",
+			"\t\",",
+			"\t{coid: {value: REQUEST.SCOOKIE.COID, cfsqltype: \"CF_SQL_INTEGER\"}},",
+			"\t{datasource: request.sdsn}",
+			");"
+		],
+		"description": "Komentar"
+	}
+}
